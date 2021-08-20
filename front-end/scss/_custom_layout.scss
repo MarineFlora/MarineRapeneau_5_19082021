@@ -28,3 +28,20 @@
     fill: url(#gradient);
 }
 
+.top-heading {
+    position: relative;
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -15px;
+        height: 2px;
+        width: 20%;
+        background-color: $primary;
+    }
+}
+
+.card-img-top {
+    height: 40vh;
+    object-fit: cover;
+}

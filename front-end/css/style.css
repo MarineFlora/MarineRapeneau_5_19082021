@@ -23,6 +23,24 @@
   fill: url(#gradient);
 }
 
+.top-heading {
+  position: relative;
+}
+.top-heading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  height: 2px;
+  width: 20%;
+  background-color: #C07635;
+}
+
+.card-img-top {
+  height: 40vh;
+  object-fit: cover;
+}
+
 /*!
  * Bootstrap v5.1.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
