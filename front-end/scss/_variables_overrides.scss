@@ -7,10 +7,13 @@ $primary: #C07635;
 $secondary: #936136;
 $tertiary: #D8A273;
 $quaternary: #EBA669;
+$dark: $secondary;
 
 $navbar-brand-font-size: 2.5rem;
 $navbar-light-color: rgba($black, .85);
 $navbar-light-hover-color: rgba($black, .6); 
+$navbar-dark-color: $light;
+$navbar-dark-hover-color: $light; 
 $nav-link-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
 
 $font-size-base: 1.1rem;

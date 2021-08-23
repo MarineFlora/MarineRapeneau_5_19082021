@@ -11,6 +11,10 @@
 
 // HEADER
 
+.gradient {
+    fill: url(#gradient);
+}
+
 .navbar-brand {
     font-family: "belligerent_madnessregular";
 } 
@@ -26,9 +30,35 @@
     }
 }
 
-.gradient {
-    fill: url(#gradient);
+.second-nav {
+    padding: 0;
+    .nav-item {
+        &:hover  {
+            font-weight: bold;
+            background-color: $light;
+            transition : $nav-link-transition;
+            .nav-link {
+                color: $secondary;
+            }  
+        }   
+    }   
+    .active .nav-link {
+        background-color: $light;
+        color:$secondary;
+        font-weight: bold;
+        &:focus {
+            color:$secondary;
+        }
+    }
 }
+
+@include media-breakpoint-down(md) { 
+    header span {
+        display: none;
+    }
+}
+
+   
 
 // MAIN
 
