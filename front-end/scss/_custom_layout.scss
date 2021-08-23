@@ -9,6 +9,8 @@
     font-style: normal;
 }
 
+// HEADER
+
 .navbar-brand {
     font-family: "belligerent_madnessregular";
 } 
@@ -28,6 +30,8 @@
     fill: url(#gradient);
 }
 
+// MAIN
+
 .top-heading {
     position: relative;
     &::after {
@@ -44,4 +48,29 @@
 .card-img-top {
     height: 40vh;
     object-fit: cover;
+}
+
+
+//FOOTER
+
+footer {
+    .first-footer-area {
+        background-color: $quaternary;
+    }
+    
+    .second-footer-area {
+        background-color: $secondary;
+        color: $light;
+        .nav-link {
+            color: $light;
+        }
+        .footer-heading--brand {
+            font-family: "belligerent_madnessregular";
+        }
+    }
+    
+    .footer-icon {
+        color: $black;
+    }
+    
 }
