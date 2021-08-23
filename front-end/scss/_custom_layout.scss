@@ -84,6 +84,11 @@
     font-size: $h2-font-size;
 }
 
+.btn {
+    border: solid 2px $primary;
+    background-color: transparent;
+}
+
 //FOOTER
 
 footer {

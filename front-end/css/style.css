@@ -11246,6 +11246,11 @@ textarea.form-control-lg {
   font-size: 1.54rem;
 }
 
+.btn {
+  border: solid 2px #C07635;
+  background-color: transparent;
+}
+
 footer .first-footer-area {
   background-color: #EBA669;
 }
