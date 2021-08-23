@@ -104,11 +104,11 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 }
 
 h1, .h1 {
-  font-size: calc(1.312rem + 0.744vw);
+  font-size: calc(1.323rem + 0.876vw);
 }
 @media (min-width: 1200px) {
   h1, .h1 {
-    font-size: 1.87rem;
+    font-size: 1.98rem;
   }
 }
 
@@ -7489,7 +7489,7 @@ textarea.form-control-lg {
 }
 
 .fs-1 {
-  font-size: calc(1.312rem + 0.744vw) !important;
+  font-size: calc(1.323rem + 0.876vw) !important;
 }
 
 .fs-2 {
@@ -11115,7 +11115,7 @@ textarea.form-control-lg {
 }
 @media (min-width: 1200px) {
   .fs-1 {
-    font-size: 1.87rem !important;
+    font-size: 1.98rem !important;
   }
 
   .fs-2 {
