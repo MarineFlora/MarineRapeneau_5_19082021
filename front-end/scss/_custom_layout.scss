@@ -1,0 +1,123 @@
+@font-face {
+    font-family: 'belligerent_madnessregular';
+    src: url('../font/belligerent-webfont.eot');
+    src: url('../font/belligerent-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/belligerent-webfont.woff') format('woff'),
+         url('../font/belligerent-webfont.ttf') format('truetype'),
+         url('../font/belligerent-webfont.svg#belligerent_madnessregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+// HEADER
+
+.gradient {
+    fill: url(#gradient);
+}
+
+.navbar-brand {
+    font-family: "belligerent_madnessregular";
+} 
+
+.navbar-icon {
+    color: $primary;
+}
+
+.nav-link  {
+    &:hover > .navbar-icon {
+        color: rgba($primary, .6);
+        transition : $nav-link-transition;
+    }
+}
+
+.second-nav {
+    padding: 0;
+    .nav-item {
+        &:hover  {
+            font-weight: bold;
+            background-color: $light;
+            transition : $nav-link-transition;
+            .nav-link {
+                color: $secondary;
+            }  
+        }   
+    }   
+    .active .nav-link {
+        background-color: $light;
+        color:$secondary;
+        font-weight: bold;
+        &:focus {
+            color:$secondary;
+        }
+    }
+}
+
+@include media-breakpoint-down(md) { 
+    header span {
+        display: none;
+    }
+}
+
+   
+
+// MAIN
+
+.top-heading {
+    position: relative;
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -15px;
+        height: 2px;
+        width: 15%;
+        background-color: $primary;
+    }
+}
+
+.card-img-top {
+    height: 40vh;
+    object-fit: cover;
+}
+
+.price {
+    font-size: $h2-font-size;
+}
+
+.btn {
+    border: solid 2px $primary;
+    background-color: transparent;
+}
+
+//FOOTER
+
+footer {
+        
+    .first-footer-area {
+        background-color: $tertiary;
+        .nav-link {
+            color: $black; 
+            &:hover{
+                color:rgba($black, .6);
+                transition : $nav-link-transition;
+            } 
+        }
+    }
+    
+    .second-footer-area {
+        background-color: $secondary;
+        color: $light;
+        .nav-link {
+            color: $light;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    
+        
+        .footer-heading--brand {
+            font-family: "belligerent_madnessregular";
+        }
+    }
+    
+}
