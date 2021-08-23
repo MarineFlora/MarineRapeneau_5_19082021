@@ -44,6 +44,9 @@
 footer .first-footer-area {
   background-color: #EBA669;
 }
+footer .first-footer-area .nav-link {
+  color: #000;
+}
 footer .second-footer-area {
   background-color: #936136;
   color: #F6F2ED;
@@ -53,9 +56,6 @@ footer .second-footer-area .nav-link {
 }
 footer .second-footer-area .footer-heading--brand {
   font-family: "belligerent_madnessregular";
-}
-footer .footer-icon {
-  color: #000;
 }
 
 /*!

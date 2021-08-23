@@ -56,6 +56,9 @@
 footer {
     .first-footer-area {
         background-color: $quaternary;
+        .nav-link {
+            color: $black;  
+        }
     }
     
     .second-footer-area {
@@ -67,10 +70,6 @@ footer {
         .footer-heading--brand {
             font-family: "belligerent_madnessregular";
         }
-    }
-    
-    .footer-icon {
-        color: $black;
     }
     
 }
