@@ -10,10 +10,10 @@ fetch("http://localhost:3000/api/cameras/")
                                                                 <img class="card-img-top" src="${camera.imageUrl}" alt="camera vintage" />
                                                                 <div class="card-body text-center">
                                                                     <h2 class="card-title">${camera.name}</h2>
-                                                                    <p class="card-text price fw-bold">${camera.price}€</p>
+                                                                    <p class="card-text price fw-bold">${camera.price/100} €</p>
                                                                     <a href="#" class="btn btn-primary">Voir produit</a>
                                                                 </div>
                                                             </div>
                                                           </div>` //  permet l'affichage : pour l'élement ID 'cards', on va remplacer dans le template les élements voulus avec l'objet camera. Interpolation de caractère : ${variable voulue}
-                                                    }
+        }
     });
