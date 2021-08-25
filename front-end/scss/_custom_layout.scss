@@ -60,7 +60,11 @@
 
 // MAIN
 
-.top-heading {
+.heading {
+  line-height: 2;
+}
+
+.subheading {
     position: relative;
     &::after {
         content: "";
@@ -68,7 +72,7 @@
         left: 0;
         bottom: -15px;
         height: 2px;
-        width: 15%;
+        width: 10%;
         background-color: $primary;
     }
 }

@@ -104,20 +104,20 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 }
 
 h1, .h1 {
-  font-size: calc(1.323rem + 0.876vw);
+  font-size: calc(1.312rem + 0.744vw);
 }
 @media (min-width: 1200px) {
   h1, .h1 {
-    font-size: 1.98rem;
+    font-size: 1.87rem;
   }
 }
 
 h2, .h2 {
-  font-size: calc(1.279rem + 0.348vw);
+  font-size: calc(1.29rem + 0.48vw);
 }
 @media (min-width: 1200px) {
   h2, .h2 {
-    font-size: 1.54rem;
+    font-size: 1.65rem;
   }
 }
 
@@ -7489,11 +7489,11 @@ textarea.form-control-lg {
 }
 
 .fs-1 {
-  font-size: calc(1.323rem + 0.876vw) !important;
+  font-size: calc(1.312rem + 0.744vw) !important;
 }
 
 .fs-2 {
-  font-size: calc(1.279rem + 0.348vw) !important;
+  font-size: calc(1.29rem + 0.48vw) !important;
 }
 
 .fs-3 {
@@ -11115,11 +11115,11 @@ textarea.form-control-lg {
 }
 @media (min-width: 1200px) {
   .fs-1 {
-    font-size: 1.98rem !important;
+    font-size: 1.87rem !important;
   }
 
   .fs-2 {
-    font-size: 1.54rem !important;
+    font-size: 1.65rem !important;
   }
 
   .fs-3 {
@@ -11217,16 +11217,20 @@ textarea.form-control-lg {
     display: none;
   }
 }
-.top-heading {
+.heading {
+  line-height: 2;
+}
+
+.subheading {
   position: relative;
 }
-.top-heading::after {
+.subheading::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: -15px;
   height: 2px;
-  width: 15%;
+  width: 10%;
   background-color: #C07635;
 }
 
@@ -11236,7 +11240,7 @@ textarea.form-control-lg {
 }
 
 .price {
-  font-size: 1.54rem;
+  font-size: 1.65rem;
 }
 
 .btn {
