@@ -3,9 +3,9 @@
 
 class Camera {
     constructor(jsonCamera) {
-        this.id = jsonCamera.id;
+        this.id = jsonCamera._id;
         this.name = jsonCamera.name;
-        this.price = jsonCamera.price;
+        this.price = jsonCamera.price/100;
         this.description = jsonCamera.description;
         this.imageUrl = jsonCamera.imageUrl;
     }
