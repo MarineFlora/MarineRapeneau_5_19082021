@@ -10,45 +10,44 @@
 }
 
 // HEADER
+.first-nav {
+    .gradient {
+        fill: url(#gradient);
+    }
 
-.gradient {
-    fill: url(#gradient);
-}
+    .navbar-brand {
+        font-family: "belligerent_madnessregular";
+    } 
 
-.navbar-brand {
-    font-family: "belligerent_madnessregular";
-} 
+    .navbar-icon {
+        color: $primary;
+    }
 
-.navbar-icon {
-    color: $primary;
-}
-
-.nav-link  {
-    &:hover > .navbar-icon {
-        color: rgba($primary, .6);
-        transition : $nav-link-transition;
+    .nav-link  {
+        &:hover > .navbar-icon {
+            color: rgba($primary, .6);
+            transition : $nav-link-transition;
+        }
     }
 }
 
 .second-nav {
     padding: 0;
     .nav-item {
-        &:hover  {
-            font-weight: bold;
-            background-color: $light;
-            transition : $nav-link-transition;
+        &:hover {
             .nav-link {
-                color: $secondary;
-            }  
+                color:$secondary;
+                border-bottom: $secondary solid 3px;
+                transition : all .15s ease;
+            }     
         }   
-    }   
+        .nav-link {
+            height: 2.7rem;
+        } 
+    } 
     .active .nav-link {
-        background-color: $light;
         color:$secondary;
-        font-weight: bold;
-        &:focus {
-            color:$secondary;
-        }
+        border-bottom: $secondary solid 3px;  
     }
 }
 
@@ -58,11 +57,14 @@
     }
 }
 
-   
 
 // MAIN
 
-.top-heading {
+.heading {
+  line-height: 2;
+}
+
+.subheading {
     position: relative;
     &::after {
         content: "";
@@ -70,7 +72,7 @@
         left: 0;
         bottom: -15px;
         height: 2px;
-        width: 15%;
+        width: 10%;
         background-color: $primary;
     }
 }
