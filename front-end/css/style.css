@@ -11182,19 +11182,16 @@ textarea.form-control-lg {
   font-weight: normal;
   font-style: normal;
 }
-.gradient {
+.first-nav .gradient {
   fill: url(#gradient);
 }
-
-.navbar-brand {
+.first-nav .navbar-brand {
   font-family: "belligerent_madnessregular";
 }
-
-.navbar-icon {
+.first-nav .navbar-icon {
   color: #C07635;
 }
-
-.nav-link:hover > .navbar-icon {
+.first-nav .nav-link:hover > .navbar-icon {
   color: rgba(192, 118, 53, 0.6);
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
@@ -11202,21 +11199,17 @@ textarea.form-control-lg {
 .second-nav {
   padding: 0;
 }
-.second-nav .nav-item:hover {
-  font-weight: bold;
-  background-color: #F6F2ED;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
-}
 .second-nav .nav-item:hover .nav-link {
   color: #936136;
+  border-bottom: #936136 solid 3px;
+  transition: all 0.15s ease;
+}
+.second-nav .nav-item .nav-link {
+  height: 2.7rem;
 }
 .second-nav .active .nav-link {
-  background-color: #F6F2ED;
   color: #936136;
-  font-weight: bold;
-}
-.second-nav .active .nav-link:focus {
-  color: #936136;
+  border-bottom: #936136 solid 3px;
 }
 
 @media (max-width: 767.98px) {
