@@ -11272,4 +11272,12 @@ footer .second-footer-area .footer-heading--brand {
   font-family: "belligerent_madnessregular";
 }
 
+.form-select {
+  max-width: 40vh;
+}
+
+.card-img-cam {
+  height: initial;
+}
+
 /*# sourceMappingURL=style.css.map */
