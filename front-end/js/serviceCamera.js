@@ -12,7 +12,7 @@ function loadCameras() {
                                                                 <div class="card-body text-center">
                                                                     <h2 class="card-title">${camera.name}</h2>
                                                                     <p class="card-text price fw-bold">${camera.price} €</p>
-                                                                    <a href="#" onClick="selectCamera('${camera.id}');" class="btn btn-primary">Voir produit</a>
+                                                                    <a href="camera.html" onClick="selectCamera('${camera.id}');" class="btn btn-primary">Voir produit</a>
                                                                 </div>
                                                             </div>
                                                           </div>` //  permet l'affichage : pour l'élement ID 'cards', on va remplacer dans le template les élements voulus avec l'objet camera. Interpolation de caractère : ${variable voulue}
