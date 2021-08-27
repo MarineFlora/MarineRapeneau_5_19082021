@@ -8,16 +8,17 @@ function loadProduct() {
     .then(data => data.json()) // transforme données reçues en format json
     .then(product => { // recupere produit + affiche
         camera = product
-        document.getElementById("product").innerHTML += `<div class="row">
-                                                                <div class="col pb-3">
-                                                                    <h1 class="text-left fw-bold">${camera.name}</h1>
-                                                                </div>
+        document.getElementById("product").innerHTML +=`<div class="row">
+                                                            <div class="col pb-3">
+                                                                <h1 class="text-left fw-bold">${camera.name}</h1>
                                                             </div>
-
-                                                            <div class="card "> 
+                                                        </div>
+                                                            
+                                                        <div class="card"> 
+                                                            <div class="container-fluid">
                                                                 <div class="row no-gutters">
-                                                                    <div class="col-lg-8">
-                                                                        <img class="card-img-top card-img-cam" src="${camera.imageUrl}" alt="camera vintage" />
+                                                                    <div class="col-lg-8 p-0">
+                                                                        <img class="card-img-top card-img-cam" src="${camera.imageUrl}" alt="camera vintage ${camera.name}" />
                                                                     </div>
                                                                     <div class="col-lg-4">
                                                                         <div class="card-body text-center ">
@@ -49,8 +50,9 @@ function loadProduct() {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>` //  permet l'affichage : pour l'élement ID 'product', on va remplacer dans le template les élements voulus avec l'objet camera. Interpolation de caractère : ${variable voulue}
-        })
+                                                            </div>
+                                                        </div>` //  permet l'affichage : pour l'élement ID 'product', on va remplacer dans le template les élements voulus avec l'objet camera. Interpolation de caractère : ${variable voulue}
+    })
     
     .catch(error => alert("Une erreur est survenue")); 
 }
