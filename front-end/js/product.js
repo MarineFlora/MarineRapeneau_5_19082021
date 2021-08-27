@@ -33,9 +33,9 @@ function loadProduct() {
                                                                             <div class="d-flex flex-column align-items-center">
                                                                                 <select class="form-select form-select-sm my-2" aria-label="multiple select">
                                                                                     <option value="">Choix lentille</option>
-                                                                                    <option value="lens 1">lens 1 </option>
-                                                                                    <option value="lens 2">lens 2</option>
-                                                                                    <option value="lens 3">lens 3 </option>
+                                                                                    <option value="lens 1">${camera.lenses[0]}</option>
+                                                                                    <option value="lens 2">${camera.lenses[1]}</option>
+                                                                                    <option value="lens 3">${camera.lenses[2]}</option>
                                                                                 </select>
                                                                                 <select class="form-select form-select-sm my-2" aria-label="multiple select">
                                                                                     <option value="">Quantité</option>
@@ -51,7 +51,7 @@ function loadProduct() {
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>` //  permet l'affichage : pour l'élement ID 'product', on va remplacer dans le template les élements voulus avec l'objet camera. Interpolation de caractère : ${variable voulue}
+                                                        </div>` //  permet l'affichage : pour l'élement ID 'product', on va remplacer dans le template les élements voulus avec l'objet camera.
     })
     
     .catch(error => alert("Une erreur est survenue")); 
