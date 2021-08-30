@@ -26,8 +26,8 @@ function addLenses() {
     }
 }
 
-// ajout des produits au panier
 
+// ajout des produits au panier
 function addToCart() {
     let selectedLens = document.getElementById("select-lens").value; // on récupère les valeurs de l'objectif choisi et la quantité
     let selectedQuantity = document.getElementById("select-quantity").value;
@@ -51,10 +51,12 @@ function addToCart() {
             lenses: selectedLens.value,
             description : camera.description,
             price : camera.price/100,
-            quantity : 1,
+            quantity : selectedQuantity.value, 
         })
-        localStorage.setItem("cart", JSON.stringify(cart)); // ajoute l'élement dans storage
-        console.log("produit ajouté au panier");
+        // ajoute l'élement dans storage, 
+        localStorage.setItem("cart", JSON.stringify(cart)); // conversion en JSON
+        let cartRestored = JSON.parse(localStorage.getItem("cart")); //reconversion de l'objet en JS
+        console.log(cartRestored); //variable cartRestored contient maintenant l'objet qui avait été sauvegardé dans le localStorage
         displayPopUp()
         
     }
