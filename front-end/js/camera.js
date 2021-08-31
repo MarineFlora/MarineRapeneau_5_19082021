@@ -8,5 +8,7 @@ class Camera {
         this.price = jsonCamera.price/100;
         this.description = jsonCamera.description;
         this.imageUrl = jsonCamera.imageUrl;
+        this.lenses = jsonCamera.lenses;
     }
 }
+
