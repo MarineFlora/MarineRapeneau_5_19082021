@@ -26,6 +26,14 @@ function addLenses() {
     }
 }
 
+//variables pour fonction addToCart
+const cart = []
+// fonction ajoute au localStorage
+function addToStorage(){
+    localStorage.setItem("cart", JSON.stringify(cart)); // conversion en JSON
+    let cartRestored = JSON.parse(localStorage.getItem("cart")); //reconversion de l'objet en JS
+    console.log(cartRestored); //variable cartRestored contient maintenant l'objet qui avait été sauvegardé dans le localStorage
+}
 
 // ajout des produits au panier
 function addToCart() {
@@ -41,7 +49,7 @@ function addToCart() {
         alert("Vous devez choisir une quantité");
     }
       else {
-        const cart = []
+        
         /*const productExist = cart.find(element => element != ""); // vérifier que le produit existe
         console.log(productExist);*/ //undefined...
         cart.push({ // ajoute l'élement au panier
@@ -54,9 +62,7 @@ function addToCart() {
             quantity : selectedQuantity.value, 
         })
         // ajoute l'élement dans storage, 
-        localStorage.setItem("cart", JSON.stringify(cart)); // conversion en JSON
-        let cartRestored = JSON.parse(localStorage.getItem("cart")); //reconversion de l'objet en JS
-        console.log(cartRestored); //variable cartRestored contient maintenant l'objet qui avait été sauvegardé dans le localStorage
+        addToStorage()
         
         //Affichage message pour confirmer ajout panier + résumé + rediriger vers panier ou accueil
         document.getElementById("pop-up").innerHTML += `<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
