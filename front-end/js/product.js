@@ -23,10 +23,10 @@ function loadProduct() {
 // fonction pour afficher le produit choisi
 function displayProduct(camera) {
     if (camera) {
-        document.getElementById("product-img").innerHTML += `<img class="card-img-top card-img-cam" src="${camera.imageUrl}" alt="camera vintage ${camera.name}" />` // affichage de l'image correspondante
+        document.getElementById("product-img").innerHTML += `<img class="card-img-top card-img-cam" src="${camera.imageUrl}" alt="camera vintage ${camera.name}" />`; // affichage de l'image correspondante
         document.getElementById("product-infos").innerHTML +=` <h1 class="card-title fw-bold">${camera.name}</h1>
                                                                 <p class="card-text price fw-bold">${camera.price/100} €</p>
-                                                                <p class="card-text">${camera.description}</p>  
+                                                                <p class="card-text">${camera.description}</p>;  
                                                               ` //  affichage : pour l'élement ID 'product-infos'
     }
     
@@ -36,7 +36,7 @@ function displayProduct(camera) {
 function addLenses(camera) {
     if (camera) {
         for(let i = 0; i < camera.lenses.length; i++) {
-            document.getElementById("select-lens").innerHTML += `<option value="${camera.lenses[i]}">${camera.lenses[i]}</option>`
+            document.getElementById("select-lens").innerHTML += `<option value="${camera.lenses[i]}">${camera.lenses[i]}</option>`;
         }
     }
    
@@ -148,7 +148,7 @@ function addToCart(event) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>`
+                                                    </div>`;
         }  
 }
 
