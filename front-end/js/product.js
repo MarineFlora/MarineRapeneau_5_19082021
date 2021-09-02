@@ -1,4 +1,6 @@
 //---------------------------RECUPERATION  DES CAMERAS DE L'API AVEC L'ID---------------------------// 
+// variable pour la camera selectionnée
+let selectedCamera;
 
 // variables pour extraire le paramètre id de l'URL
 let params = new URL(window.location).searchParams;
@@ -8,9 +10,9 @@ const id = params.get("id");
 function loadProduct() {
     fetch("http://localhost:3000/api/cameras/"+ id)
     .then(data => data.json()) // transforme données reçues en format json
-    .then(product => { // recupere produit + affiche
+    .then(camera => { // recupere produit + affiche
         //créer l'objet camera à partir de la classe Camera
-        let camera = new Camera(product);
+        selectedCamera = camera;
         addLenses(camera);
         displayProduct(camera);
     })
@@ -20,24 +22,30 @@ function loadProduct() {
 
 // fonction pour afficher le produit choisi
 function displayProduct(camera) {
-    document.getElementById("product-img").innerHTML += `<img class="card-img-top card-img-cam" src="${camera.imageUrl}" alt="camera vintage ${camera.name}" />` // affichage de l'image correspondante
+    if (camera) {
+        document.getElementById("product-img").innerHTML += `<img class="card-img-top card-img-cam" src="${camera.imageUrl}" alt="camera vintage ${camera.name}" />` // affichage de l'image correspondante
         document.getElementById("product-infos").innerHTML +=` <h1 class="card-title fw-bold">${camera.name}</h1>
-                                                                <p class="card-text price fw-bold">${camera.price} €</p>
+                                                                <p class="card-text price fw-bold">${camera.price/100} €</p>
                                                                 <p class="card-text">${camera.description}</p>  
                                                               ` //  affichage : pour l'élement ID 'product-infos'
+    }
+    
 }
 
 // fonction boucle qui parcourt les lentilles + affiche l'option dans element "select"
 function addLenses(camera) {
-    for(let i = 0; i < camera.lenses.length; i++) {
-        document.getElementById("select-lens").innerHTML += `<option value="${camera.lenses[i]}">${camera.lenses[i]}</option>`
+    if (camera) {
+        for(let i = 0; i < camera.lenses.length; i++) {
+            document.getElementById("select-lens").innerHTML += `<option value="${camera.lenses[i]}">${camera.lenses[i]}</option>`
+        }
     }
+   
 }
 
 //---------------------------AJOUT DE LA CAMERA AU PANIER---------------------------// 
 
-// fonction ajoute au localStorage
-function addToStorage(event){
+// fonction ajoute au localStorage ne sert à rien en fait... 
+/*function addToStorage(event){
     event.preventDefault();
     // recuperer le panier
     const cart = localStorage.getItem("cart");
@@ -45,14 +53,15 @@ function addToStorage(event){
         alert("le panier est vide");
     }
 
-    /*localStorage.setItem("cart", JSON.stringify(cart)); // conversion en JSON
+    localStorage.setItem("cart", JSON.stringify(cart)); // conversion en JSON
     let cartRestored = JSON.parse(localStorage.getItem("cart")); //reconversion de l'objet en JS
     console.log(cartRestored); *///variable cartRestored contient maintenant l'objet qui avait été sauvegardé dans le localStorage
-}
+//}
 
 // ajout des produits au panier
 function addToCart(event) {
     event.preventDefault();
+    
     // on récupère le produit que la personne a personnalisé pour l'ajouter au panier
     
      // on récupère les valeurs de l'objectif choisi
@@ -60,58 +69,56 @@ function addToCart(event) {
      console.log(selectedLens);
  
      // on récupère la quantité indiquée
-     let selectedQuantity = document.getElementById("select-quantity").value;
-     console.log(selectedQuantity);
+     let quantity = document.getElementById("select-quantity").value;
+     console.log(quantity);
 
-   // let camera = new Camera();//quelque chose mais I don't understand, je n'arrive pas à faire fonctionner si let camera= new camera dans 1ere fonction alors que si let en dehors comme sur son corrigé cela fonctionne
-     const productAdd = { 
-        imageUrl : camera.imageUrl,
-        name : camera.name,
-        id : camera._id,
-        lenses: selectedLens.value,
-        description : camera.description,
-        price : (camera.price/100)*selectedQuantity,
-        selectedQuantity, 
+   // 
+     /*const productAdd = { 
+        imageUrl : selectedCamera.imageUrl,
+        name : selectedCamera.name,
+        id : selectedCamera._id,
+        lenses: selectedLens,
+        description : selectedCamera.description,
+        price : (selectedCamera.price/100)*quantity,
+        quantity, 
     }
-    console.log(productAdd);
+    console.log(productAdd);*/
 
+    // on modifie le prix, la quantité, les lentilles
+    selectedCamera.quantity = quantity;
+    selectedCamera.price = (selectedCamera.price/100)*quantity;
     // envoi des données au localStorage, si le panier est vide on l'initialise avec un array vide
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // si le panier ne contient pas d'élement, on ajoute le 1er produit
+    // si le panier est vide, on ajoute le 1er produit
     if (cart.length == 0) {
-        cart.push();
-    } else { // le panier n'est pas vide, verfifier si le produit existe dans le localStorage pour eviter les doublons (on veut accumuler les quantités, pas camera canon1, canon1, canon1 mais canon1 x3)
-        
-    }  /*const productExist = cart.find(element => element != ""); // vérifier que le produit existe
-    console.log(productExist);*/ //undefined...
+        cart.push(selectedCamera);
+      //  cart.push(productAdd); 
+    } else { // le panier a des déjà des élements : verifier si le produit selectionné existe déjà dans le localStorage pour accumuler les quantités
+        const sameProducts = cart.find(product => product._id === selectedCamera._id); // recherche les même id
+        if (sameProducts) { // quantité des produits aux mêmes id est calculée en additionnant la quantité déjà présente dans le storage et la nouvelle quantité ajoutée, idem pour prix 
+            sameProducts.quantity = parseInt(sameProducts.quantity) + parseInt(selectedCamera.quantity); 
+            sameProducts.price = sameProducts.price + selectedCamera.price; 
+        } else {
+            cart.push(selectedCamera);
+            //  cart.push(productAdd); 
+        }
+    } 
 
+    localStorage.setItem("cart", JSON.stringify(cart)); // ajoute l'élement dans le storage
    
 
     // on affiche un message d'erreur si options non selectionnées
-    if (selectedLens == "" && selectedQuantity =="") {
+    if (selectedLens == "" && quantity =="") {
         alert("Vous devez choisir une lentille et une quantité");
     } else if (selectedLens == "") { 
         alert("Vous devez choisir une lentille");
-    } else if (selectedQuantity == ""){
+    } else if (quantity == ""){
         alert("Vous devez choisir une quantité");
-    }/*
-      else {
-        
-       
-      /*  cart.push({ // ajoute l'élement au panier
-            image : camera.imageUrl,
-            name : camera.name,
-            id : camera._id,
-            lenses: selectedLens.value,
-            description : camera.description,
-            price : camera.price/100,
-            quantity : selectedQuantity.value, 
-        })
-        // ajoute l'élement dans storage, 
-        addToStorage()
-        
-        //Affichage message pour confirmer ajout panier + résumé + rediriger vers panier ou accueil
+    }
+     
+       //Affichage message pour confirmer ajout panier + résumé + rediriger vers panier ou accueil
+        if (event) {
         document.getElementById("pop-up").innerHTML += `<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
@@ -124,10 +131,10 @@ function addToCart(event) {
                                                                     </h3> 
                                                                 </div>
                                                                 <div class="modal-body d-flex flex-row justify-content-around align-items-center">
-                                                                    <img src="${camera.imageUrl}" alt="camera vintage ${camera.name}" class="camera-mini"/>
+                                                                    <img src="${selectedCamera.imageUrl}" alt="camera vintage ${selectedCamera.name}" class="camera-mini"/>
                                                                     <div>
                                                                         <p class="fw-bold">Modèle</p>
-                                                                        <p>${camera.name}</p>
+                                                                        <p>${selectedCamera.name}</p>
                                                                     </div>
                                                                     <div>
                                                                         <p class="fw-bold">Lentille</p>
@@ -142,8 +149,8 @@ function addToCart(event) {
                                                             </div>
                                                         </div>
                                                     </div>`
-        
-    }*/
-
+        }  
 }
+
+
 
