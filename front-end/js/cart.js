@@ -22,16 +22,18 @@ function loadCart() {
                                                                 <h1 class="pb-2 row"> Mon panier (1 produit)</h1>`;
         // boucle pour chaque élement enregistré dans le local storage, ajouter cet html
         cartRestored.forEach(item => {
-            document.getElementById("cart-products").innerHTML += `<div class="row p-3 text-center justify-content-between align-items-center">
-                                                                        <div class=" col-sm-3 mb-2">
+            document.getElementById("cart-products").innerHTML += ` <div class=" col-sm-3 mb-2">
                                                                             <img id="product-img" class="camera-mini" src="${item.imageUrl}" alt="camera vintage ${item.name} " />
                                                                         </div>
                                                                         <div class="col-sm-3">
                                                                             <p class="mb-2">${item.name}</p>
                                                                         </div>
-                                                                        <p class="col-sm-2 fw-bold mb-2">${item.price} €</p>
-                                                                        <div class="col-md-2 mb-2 d-flex justify-content-center align-items-center">
+                                                                        <p class="col-sm-2 fw-bold mb-2">${item.price} €</p>` ;  
+
+            if (item.quantity < 10) {                                                      
+                document.getElementById("cart-products").innerHTML += `<div class="col-md-2 mb-2 d-flex justify-content-center align-items-center">
                                                                             <select id="select-quantity" class="form-select form-select-sm w-auto" aria-label="multiple select">
+                                                                            <option value="" selected>${item.quantity}</option>
                                                                                 <option value="1">1</option>
                                                                                 <option value="2">2</option>
                                                                                 <option value="3">3</option>
@@ -41,12 +43,15 @@ function loadCart() {
                                                                                 <option value="7">7</option>
                                                                                 <option value="8">8</option>
                                                                                 <option value="9">9</option>
-                                                                                <option value="10">10</option>
+                                                                                <option value="10">10+</option>
                                                                             </select>
-                                                                        </div>
-                                                                    
-                                                                        <a class="col-md-2 ">supprimer</a>
-                                                                    </div>`;
+                                                                        </div>` ;
+            } else {
+                document.getElementById("cart-products").innerHTML += `<div class="col-md-2 mb-2 d-flex justify-content-center align-items-center">
+                <input type="number" min="1" max="100" value="${item.quantity}" class="form-control form-select-sm input-sm input-vh">
+                </div>`;
+            }                                                          
+            document.getElementById("cart-products").innerHTML += `  <a class="col-md-2 ">supprimer</a> `;
      });
        
                                                                 
