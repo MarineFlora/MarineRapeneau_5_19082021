@@ -1,6 +1,7 @@
-//------------------------récupération du panier------------------------//
+//-----------------------------------récupération du panier-----------------------------------//
 let cartRestored = JSON.parse(localStorage.getItem("cart"));
-// fonction pour afficher le contenu de la page panier 
+
+// fonction pour afficher le contenu de la page panier et récuperer les elements selectionnés
 function loadCart() { 
     if (cartRestored == null) {
         document.getElementById("empty-cart").innerHTML = ` <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-basket2" viewBox="0 0 16 16">
@@ -51,7 +52,7 @@ function loadCart() {
                                                                             <input type="number" min="1" max="100" value="${item.quantity}" class="form-control form-select-sm input-sm input-vh">
                                                                         </div>`;
             }                                                          
-            document.getElementById("cart-products").innerHTML += `<a class="col-md-2 mb-4">supprimer</a> `;
+            document.getElementById("cart-products").innerHTML += `<a href="cart.html" class="col-md-2 mb-4" onclick="removeItem(event)">supprimer</a> `;
         });
        
                                                                 
@@ -64,4 +65,12 @@ function loadCart() {
                                                                     <a href="#" class="btn btn-primary my-4 w-auto">Valider mon panier</a>
                                                                 </div>`;
     }
+}
+
+//-----------------------------------supprimer un produit-----------------------------------//
+// fonction pour pouvoir supprimer les élements // test ne fonctionne pas
+function removeItem(event) {
+    event.preventDefault();
+    cartRestored.removeItem();
+    localStorage.setItem("cart", JSON.stringify(cartRestored)) // supprime tout rend cartResotred =null removeItem? mais quel key? cart
 }
