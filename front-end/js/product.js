@@ -44,20 +44,6 @@ function addLenses(camera) {
 
 //---------------------------AJOUT DE LA CAMERA AU PANIER---------------------------// 
 
-// fonction ajoute au localStorage ne sert à rien en fait... 
-/*function addToStorage(event){
-    event.preventDefault();
-    // recuperer le panier
-    const cart = localStorage.getItem("cart");
-    if (cart == null) {
-        alert("le panier est vide");
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart)); // conversion en JSON
-    let cartRestored = JSON.parse(localStorage.getItem("cart")); //reconversion de l'objet en JS
-    console.log(cartRestored); *///variable cartRestored contient maintenant l'objet qui avait été sauvegardé dans le localStorage
-//}
-
 // ajout des produits au panier
 function addToCart(event) {
     event.preventDefault();
@@ -72,20 +58,6 @@ function addToCart(event) {
      let quantity = document.getElementById("select-quantity").value;
      console.log(quantity);
 
-   // 
-     /*const productAdd = { 
-        imageUrl : selectedCamera.imageUrl,
-        name : selectedCamera.name,
-        id : selectedCamera._id,
-        lenses: selectedLens,
-        description : selectedCamera.description,
-        price : (selectedCamera.price/100)*quantity,
-        quantity, 
-    }
-    console.log(productAdd);*/
-
-   
-
     // on affiche un message d'erreur si options non selectionnées, sinon on affiche le message pop-up de confirmation et on ajoute au storage
     if (selectedLens == "" && quantity =="") {
         alert("Vous devez choisir une lentille et une quantité");
@@ -94,7 +66,7 @@ function addToCart(event) {
     } else if (quantity == ""){
         alert("Vous devez choisir une quantité");
     } else {
-         // on modifie le prix, la quantité, les lentilles
+         // on modifie le prix, la quantité
         selectedCamera.quantity = quantity;
         selectedCamera.price = (selectedCamera.price/100)*quantity;
         // envoi des données au localStorage, si le panier est vide on l'initialise avec un array vide

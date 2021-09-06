@@ -29,31 +29,18 @@ function loadCart() {
                                                                     <div class="col-sm-3">
                                                                         <p class="mb-2">${item.name}</p>
                                                                     </div>
-                                                                    <p class="col-sm-2 fw-bold mb-2">${item.price} €</p>` ;  
+                                                                    <p class="col-sm-2 fw-bold mb-2 total-price-product" >${item.price} €</p>` ;  
 
-            if (item.quantity < 10) {                                                      
-                document.getElementById("cart-products").innerHTML += ` <div class="col-md-2 mb-2 d-flex justify-content-center align-items-center">
-                                                                            <select id="select-quantity" class="form-select form-select-sm w-auto" aria-label="multiple select">
-                                                                                <option value="" selected>${item.quantity}</option>
-                                                                                <option value="1">1</option>
-                                                                                <option value="2">2</option>
-                                                                                <option value="3">3</option>
-                                                                                <option value="4">4</option>
-                                                                                <option value="5">5</option>
-                                                                                <option value="6">6</option>
-                                                                                <option value="7">7</option>
-                                                                                <option value="8">8</option>
-                                                                                <option value="9">9</option>
-                                                                                <option value="10">10+</option>
-                                                                            </select>
-                                                                        </div>` ;
-            } else {
-                document.getElementById("cart-products").innerHTML += ` <div class="col-md-2 mb-2 d-flex justify-content-center align-items-center">
-                                                                            <input type="number" min="1" max="100" value="${item.quantity}" class="form-control form-select-sm input-sm input-vh">
-                                                                        </div>`;
-            }                                                          
-            document.getElementById("cart-products").innerHTML += `<a href="cart.html" class="col-md-2 mb-4" onclick="removeItem(event)">supprimer</a> `;
+            document.getElementById("cart-products").innerHTML += ` <div class="col-md-2 mb-2 d-flex justify-content-center align-items-center">
+                                                                        <input type="number" min="1" max="100" value="${item.quantity}" class="form-control form-select-sm input-sm input-vh" onclick="newPrice()">
+                                                                    </div>`;
+                                                                     
+            document.getElementById("cart-products").innerHTML += `<a href="cart.html" class="col-md-2 mb-4" onclick="removeItem()">supprimer</a> `;
+
+            
+          
         });
+        
        
                                                                 
 
@@ -65,12 +52,39 @@ function loadCart() {
                                                                     <a href="#" class="btn btn-primary my-4 w-auto">Valider mon panier</a>
                                                                 </div>`;
     }
+  
+    
 }
 
+//-----------------------------------recalcul du prix si quantité modifiée-----------------------------------//
+//----------------------------------- ERREUR : seule la quantité de la 1ere camera peut être modifiée et prix recalculé, pour autres produits dans le panier, cela rajoute au prix de la 1ere camera, problème boucle ? na pas faire de boucle ?
+//----------------------------------- ERREUR d'affichage : le 1er clic sur l'input n'affiche pas le recalcul du prix mais après c'est ok
+//----------------------------------- ERREUR localStorage : ne se met pas à jour
+function newPrice() {
+    let input = document.querySelector('input'); //on récupère l'input sur lequel on click
+    const priceProduct = document.querySelector('.total-price-product'); //on récupère le prix qui va être modifié
+    for (let i in cartRestored) {
+        input.addEventListener('input', updateValue); // on écoute l'évenement (quantité + ou -) et on appelle la fonction callback
+        function updateValue(e) { // fonction qui recalcule le prix en prenant la valeur de l'input*le prix unitaire
+            priceProduct.textContent = parseInt(e.target.value)*(cartRestored[i].price/parseInt(cartRestored[i].quantity)) +" €";
+        }
+    }
+    localStorage.setItem("cart", JSON.stringify(cartRestored));// réengistrer la quantité choisie dans localStorage : ne fonctionne pas
+    
+}
+   
+
 //-----------------------------------supprimer un produit-----------------------------------//
-// fonction pour pouvoir supprimer les élements // test ne fonctionne pas
-/*function removeItem(event) {
-    event.preventDefault();
-    cartRestored.removeItem();
-    localStorage.setItem("cart", JSON.stringify(cartRestored)) // supprime tout rend cartResotred =null removeItem? mais quel key? cart
-}*/
+function removeItem(i) {
+    cartRestored.splice(i, 1);// permet de supprimer un élement d'un tableau
+    localStorage.removeItem(i, 1); // permet de retirer l'élement du localStorage
+    localStorage.setItem("cart", JSON.stringify(cartRestored)); // mise à jour du panier
+    location.reload(); // rafraichir page
+} 
+
+
+//-----------------------------------calcul du prix total-----------------------------------//
+//to do
+
+//-----------------------------------formulaire-----------------------------------//
+//to do
