@@ -20,7 +20,7 @@ function loadCart() {
                                                                     Continuer mes achats
                                                                         </a> 
                                                                     </div>
-                                                                    <h1 class="pb-2 row"> Mon panier (1 produit)</h1>`;
+                                                                    <h1 class="pb-3 col"> Mon panier (1 produit)</h1>`;
         // boucle pour chaque élement enregistré dans le local storage, ajouter cet html
         cartRestored.forEach(item => {
             document.getElementById("cart-products").innerHTML += ` <div class=" col-sm-3 mb-2">
@@ -69,8 +69,8 @@ function loadCart() {
 
 //-----------------------------------supprimer un produit-----------------------------------//
 // fonction pour pouvoir supprimer les élements // test ne fonctionne pas
-function removeItem(event) {
+/*function removeItem(event) {
     event.preventDefault();
     cartRestored.removeItem();
     localStorage.setItem("cart", JSON.stringify(cartRestored)) // supprime tout rend cartResotred =null removeItem? mais quel key? cart
-}
+}*/
