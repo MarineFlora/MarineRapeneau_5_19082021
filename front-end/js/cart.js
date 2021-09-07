@@ -1,7 +1,7 @@
 //-----------------------------------récupération du panier-----------------------------------//
 let cartRestored = JSON.parse(localStorage.getItem("cart"));
 let totalPrice = 0;
-
+let totalQuantity = 0;
 // fonction pour afficher le contenu de la page panier et récuperer les elements selectionnés
 function loadCart() { 
     if (cartRestored == null) {
@@ -13,18 +13,20 @@ function loadCart() {
                                                             <a href="index.html" class="link-dark pt-3">Continuer mes achats</a>`; 
     }
     else {
-        document.getElementById("continue-shopping").innerHTML = `  <div class="col pb-3">
-                                                                        <a href="index.html" class="link-dark text-decoration-none">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                                                                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                                                                            </svg>
-                                                                    Continuer mes achats
-                                                                        </a> 
-                                                                    </div>
-                                                                    <h1 class="pb-3 col"> Mon panier (${cartRestored.length} produits)</h1>`;
         // boucle pour chaque élement enregistré dans le local storage, ajouter cet html
         cartRestored.forEach(item => {
             totalPrice += item.price;
+            totalQuantity += Number(item.quantity);
+            document.getElementById("continue-shopping").innerHTML = `  <div class="col pb-3">
+                                                                            <a href="index.html" class="link-dark text-decoration-none">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                                                                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                                                                                </svg>
+                                                                        Continuer mes achats
+                                                                            </a> 
+                                                                        </div>
+                                                                        <h1 class="pb-3 col"> Mon panier (${totalQuantity} produits)</h1>`;
+
             document.getElementById("cart-products").innerHTML += ` <div class=" col-sm-3 mb-2">
                                                                         <img id="product-img" class="camera-mini" src="${item.imageUrl}" alt="camera vintage ${item.name} " />
                                                                     </div>
@@ -42,10 +44,8 @@ function loadCart() {
             
           
         });
-        
-       
-                                                                
-
+                                                            
+        //affichage du prix total -- note : "valider panier" à mettre après le formulaire
         document.getElementById("cart-total").innerHTML += `<h2 class="row text-left pb-2">Récapitulatif</h2>
                                                                 <div class="row bg-light p-3 justify-content-center rounded">
                                                                     <p class="col fw-bold text-center">TOTAL</p>
