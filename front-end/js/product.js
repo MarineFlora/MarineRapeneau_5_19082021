@@ -79,7 +79,7 @@ function addToCart(event) {
         } else { // le panier a des déjà des élements : verifier si le produit selectionné existe déjà dans le localStorage pour accumuler les quantités
             const sameProducts = cart.find(product => product._id === selectedCamera._id); // recherche les même id
             if (sameProducts) { // quantité des produits aux mêmes id est calculée en additionnant la quantité déjà présente dans le storage et la nouvelle quantité ajoutée, idem pour prix 
-                sameProducts.quantity = parseInt(sameProducts.quantity) + parseInt(selectedCamera.quantity); 
+                sameProducts.quantity = Number(sameProducts.quantity) + Number(selectedCamera.quantity); 
                 sameProducts.price = sameProducts.price + selectedCamera.price; 
             } else {
                 cart.push(selectedCamera);

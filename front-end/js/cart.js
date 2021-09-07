@@ -68,7 +68,7 @@ function newPrice() {
     for (let i in cartRestored) {
         input.addEventListener('input', updateValue); // on écoute l'évenement (quantité + ou -) et on appelle la fonction callback
         function updateValue(e) { // fonction qui recalcule le prix en prenant la valeur de l'input*le prix unitaire
-            priceProduct.textContent = parseInt(e.target.value)*(cartRestored[i].price/parseInt(cartRestored[i].quantity)) +" €";
+            priceProduct.textContent = Number(e.target.value)*(cartRestored[i].price/Number(cartRestored[i].quantity)) +" €";
         }
     }
     localStorage.setItem("cart", JSON.stringify(cartRestored));// réengistrer la quantité choisie dans localStorage : ne fonctionne pas
