@@ -20,7 +20,7 @@ function loadCart() {
                                                                     Continuer mes achats
                                                                         </a> 
                                                                     </div>
-                                                                    <h1 class="pb-3 col"> Mon panier (1 produit)</h1>`;
+                                                                    <h1 class="pb-3 col"> Mon panier (${cartRestored.length} produits)</h1>`;
         // boucle pour chaque élement enregistré dans le local storage, ajouter cet html
         cartRestored.forEach(item => {
             document.getElementById("cart-products").innerHTML += ` <div class=" col-sm-3 mb-2">
@@ -59,7 +59,7 @@ function loadCart() {
 //-----------------------------------recalcul du prix si quantité modifiée-----------------------------------//
 //----------------------------------- ERREUR : seule la quantité de la 1ere camera peut être modifiée et prix recalculé, pour autres produits dans le panier, cela rajoute au prix de la 1ere camera, problème boucle ? na pas faire de boucle ?
 //----------------------------------- ERREUR d'affichage : le 1er clic sur l'input n'affiche pas le recalcul du prix mais après c'est ok
-//----------------------------------- ERREUR localStorage : ne se met pas à jour
+//----------------------------------- ERREUR localStorage : ne se met pas à jour quand on choisi une nouvelle quantité
 function newPrice() {
     let input = document.querySelector('input'); //on récupère l'input sur lequel on click
     const priceProduct = document.querySelector('.total-price-product'); //on récupère le prix qui va être modifié
@@ -75,9 +75,9 @@ function newPrice() {
    
 
 //-----------------------------------supprimer un produit-----------------------------------//
-
-function removeItem(i) {
-    cartRestored.splice(i, 1);// permet de supprimer un élement d'un tableau du storage
+//----------------------------------- ERREUR : click sur supprimer supprime la 1ere camera(top) pas la camera sur la même ligne
+function removeItem(item) {
+    cartRestored.splice(item, 1);// permet de supprimer un élement d'un tableau du storage // ERREUR : supprime toujours le 1er element
     localStorage.setItem("cart", JSON.stringify(cartRestored)); // mise à jour du panier
     let cartLength = cartRestored.length;
     if (cartLength == 0) { // s'il n'y a plus de produits dans panier, supprimer le localStorage pour permettre affichage page panier vide
