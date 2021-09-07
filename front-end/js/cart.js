@@ -1,5 +1,6 @@
 //-----------------------------------récupération du panier-----------------------------------//
 let cartRestored = JSON.parse(localStorage.getItem("cart"));
+let totalPrice = 0;
 
 // fonction pour afficher le contenu de la page panier et récuperer les elements selectionnés
 function loadCart() { 
@@ -23,6 +24,7 @@ function loadCart() {
                                                                     <h1 class="pb-3 col"> Mon panier (${cartRestored.length} produits)</h1>`;
         // boucle pour chaque élement enregistré dans le local storage, ajouter cet html
         cartRestored.forEach(item => {
+            totalPrice += item.price;
             document.getElementById("cart-products").innerHTML += ` <div class=" col-sm-3 mb-2">
                                                                         <img id="product-img" class="camera-mini" src="${item.imageUrl}" alt="camera vintage ${item.name} " />
                                                                     </div>
@@ -47,7 +49,7 @@ function loadCart() {
         document.getElementById("cart-total").innerHTML += `<h2 class="row text-left pb-2">Récapitulatif</h2>
                                                                 <div class="row bg-light p-3 justify-content-center rounded">
                                                                     <p class="col fw-bold text-center">TOTAL</p>
-                                                                    <p class="col fw-bold text-center">333 €</p>
+                                                                    <p class="col fw-bold text-center">${totalPrice} €</p>
                                                                     <p class="row fw-light fst-italic">Hors frais de livraison</p>
                                                                     <a href="#" class="btn btn-primary my-4 w-auto">Valider mon panier</a>
                                                                 </div>`;
@@ -85,9 +87,6 @@ function removeItem(item) {
     }
 } 
 
-
-//-----------------------------------calcul du prix total-----------------------------------//
-//to do
 
 //-----------------------------------formulaire-----------------------------------//
 //to do
