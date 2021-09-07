@@ -75,11 +75,14 @@ function newPrice() {
    
 
 //-----------------------------------supprimer un produit-----------------------------------//
+
 function removeItem(i) {
-    cartRestored.splice(i, 1);// permet de supprimer un élement d'un tableau
-    localStorage.removeItem(i, 1); // permet de retirer l'élement du localStorage
+    cartRestored.splice(i, 1);// permet de supprimer un élement d'un tableau du storage
     localStorage.setItem("cart", JSON.stringify(cartRestored)); // mise à jour du panier
-    location.reload(); // rafraichir page
+    let cartLength = cartRestored.length;
+    if (cartLength == 0) { // s'il n'y a plus de produits dans panier, supprimer le localStorage pour permettre affichage page panier vide
+        localStorage.clear(); 
+    }
 } 
 
 
