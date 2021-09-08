@@ -37,11 +37,11 @@ function loadCart() {
                                                                     </div>
                                                                     <p class="col-sm-2 fw-bold mb-2 price-product" >${item.price} €</p>  
                                                                     <div class="col-md-2 mb-2 d-flex justify-content-center align-items-center">
-                                                                        <input type="number" min="1" max="100" value="${item.quantity}" class="form-control form-select-sm input-sm input-vh">
+                                                                        <input type="number" min="1" max="100" value="${item.quantity}"  id="${item._id}" class="form-control form-select-sm input-sm input-vh inputQuantity" onblur="validateForm(event, '${item._id}')">
                                                                     </div>
                                                                     <a href="cart.html" class="col-md-2 mb-4" onclick="removeItem('${item._id}')">supprimer</a> `;
 
-            newPrice(item);
+            
           
         });
                                                     
@@ -74,6 +74,26 @@ function newPrice(item) {
     
 }
    
+function validateForm(event, itemId) {
+    event.preventDefault();
+
+    let input = document.getElementById(itemId);
+    // on parcourt le localStorage pour récuperer le produit
+    const product = cartRestored.find(item => item._id === itemId);
+    const newQuantity = Number(input.value);
+    if (product) {
+        console.log(product);
+        // gestion du prix
+        const prixUnitaire = Number(product.price)/Number(product.quantity);
+        console.log(prixUnitaire);
+        product.price = prixUnitaire*newQuantity;
+        product.quantity = newQuantity;
+    }
+    console.log("=============");
+    console.log(cartRestored);
+    localStorage.setItem("cart", JSON.stringify(cartRestored));
+    location.reload();
+  }
 
 //-----------------------------------supprimer un produit-----------------------------------//
 
