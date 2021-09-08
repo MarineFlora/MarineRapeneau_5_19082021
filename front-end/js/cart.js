@@ -17,6 +17,7 @@ function loadCart() {
         cartRestored.forEach(item => {
             totalPrice += item.price;
             totalQuantity += Number(item.quantity);
+            
             document.getElementById("continue-shopping").innerHTML = `  <div class="col pb-3">
                                                                             <a href="index.html" class="link-dark text-decoration-none">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -27,26 +28,24 @@ function loadCart() {
                                                                         </div>
                                                                         <h1 class="pb-3 col"> Mon panier (${totalQuantity} produits)</h1>`;
 
-            document.getElementById("cart-products").innerHTML += ` <div class=" col-sm-3 mb-2">
+            document.getElementById("cart-products").innerHTML += ` <div class="col-sm-3 mb-2">
                                                                         <img id="product-img" class="camera-mini" src="${item.imageUrl}" alt="camera vintage ${item.name} " />
                                                                     </div>
                                                                     <div class="col-sm-3">
                                                                         <p class="mb-2">${item.name}</p>
                                                                     </div>
-                                                                    <p class="col-sm-2 fw-bold mb-2 total-price-product" >${item.price} €</p>` ;  
+                                                                    <p class="col-sm-2 fw-bold mb-2 price-product" >${item.price} €</p>  
+                                                                    <div class="col-md-2 mb-2 d-flex justify-content-center align-items-center">
+                                                                        <input type="number" min="1" max="100" value="${item.quantity}" class="form-control form-select-sm input-sm input-vh">
+                                                                    </div>
+                                                                    <a href="cart.html" class="col-md-2 mb-4" onclick="removeItem('${item._id}')">supprimer</a> `;
 
-            document.getElementById("cart-products").innerHTML += ` <div class="col-md-2 mb-2 d-flex justify-content-center align-items-center">
-                                                                        <input type="number" min="1" max="100" value="${item.quantity}" class="form-control form-select-sm input-sm input-vh" onclick="newPrice()">
-                                                                    </div>`;
-                                                                     
-            document.getElementById("cart-products").innerHTML += `<a href="cart.html" class="col-md-2 mb-4" onclick="removeItem()">supprimer</a> `;
-
-            
+            newPrice(item);
           
         });
-                                                            
+                                                    
         //affichage du prix total -- note : "valider panier" à mettre après le formulaire
-        document.getElementById("cart-total").innerHTML += `<h2 class="row text-left pb-2">Récapitulatif</h2>
+        document.getElementById("cart-total").innerHTML = `<h2 class="row text-left pb-2">Récapitulatif</h2>
                                                                 <div class="row bg-light p-3 justify-content-center rounded">
                                                                     <p class="col fw-bold text-center">TOTAL</p>
                                                                     <p class="col fw-bold text-center">${totalPrice} €</p>
@@ -62,27 +61,31 @@ function loadCart() {
 //----------------------------------- ERREUR : seule la quantité de la 1ere camera peut être modifiée et prix recalculé, pour autres produits dans le panier, cela rajoute au prix de la 1ere camera, problème boucle ? na pas faire de boucle ?
 //----------------------------------- ERREUR d'affichage : le 1er clic sur l'input n'affiche pas le recalcul du prix mais après c'est ok
 //----------------------------------- ERREUR localStorage : ne se met pas à jour quand on choisi une nouvelle quantité
-function newPrice() {
+function newPrice(item) {
     let input = document.querySelector('input'); //on récupère l'input sur lequel on click
-    const priceProduct = document.querySelector('.total-price-product'); //on récupère le prix qui va être modifié
-    for (let i in cartRestored) {
+    let priceProduct = document.querySelector('.price-product'); //on récupère le prix qui va être modifié
+    // le mettre dans la boucle foreEach ?
         input.addEventListener('input', updateValue); // on écoute l'évenement (quantité + ou -) et on appelle la fonction callback
         function updateValue(e) { // fonction qui recalcule le prix en prenant la valeur de l'input*le prix unitaire
-            priceProduct.textContent = Number(e.target.value)*(cartRestored[i].price/Number(cartRestored[i].quantity)) +" €";
+            priceProduct.textContent = Number(e.target.value)*(item.price/Number(item.quantity)) +" €";
         }
-    }
+    
     localStorage.setItem("cart", JSON.stringify(cartRestored));// réengistrer la quantité choisie dans localStorage : ne fonctionne pas
     
 }
    
 
 //-----------------------------------supprimer un produit-----------------------------------//
-//----------------------------------- ERREUR : click sur supprimer supprime la 1ere camera(top) pas la camera sur la même ligne
-function removeItem(item) {
-    cartRestored.splice(item, 1);// permet de supprimer un élement d'un tableau du storage // ERREUR : supprime toujours le 1er element
-    localStorage.setItem("cart", JSON.stringify(cartRestored)); // mise à jour du panier
-    let cartLength = cartRestored.length;
-    if (cartLength == 0) { // s'il n'y a plus de produits dans panier, supprimer le localStorage pour permettre affichage page panier vide
+
+function removeItem(itemId) {
+    // retourne un nouveau tableau contenant les élements du tableau d'origine qui n'ont pas le même Id que celui du click sur suppr
+    const newCart = cartRestored.filter(product => product._id !== itemId);
+    if (newCart) {
+        localStorage.setItem("cart", JSON.stringify(newCart)); // mise à jour du panier
+    }
+    let cartLength = newCart.length;
+    // s'il n'y a plus de produits dans panier, supprimer le localStorage pour permettre affichage page "panier vide"
+    if (cartLength == 0) { 
         localStorage.clear(); 
     }
 } 

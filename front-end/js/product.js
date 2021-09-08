@@ -50,13 +50,13 @@ function addToCart(event) {
     
     // on récupère le produit que la personne a personnalisé pour l'ajouter au panier
     
-     // on récupère les valeurs de l'objectif choisi
-     let selectedLens = document.getElementById("select-lens").value;
-     console.log(selectedLens);
+    // on récupère les valeurs de l'objectif choisi
+    let selectedLens = document.getElementById("select-lens").value;
+    console.log(selectedLens);
  
-     // on récupère la quantité indiquée
-     let quantity = document.getElementById("select-quantity").value;
-     console.log(quantity);
+    // on récupère la quantité indiquée
+    let quantity = document.getElementById("select-quantity").value;
+    console.log(quantity);
 
     // on affiche un message d'erreur si options non selectionnées, sinon on affiche le message pop-up de confirmation et on ajoute au storage
     if (selectedLens == "" && quantity =="") {
@@ -75,22 +75,19 @@ function addToCart(event) {
         // si le panier est vide, on ajoute le 1er produit
         if (cart.length == 0) {
             cart.push(selectedCamera);
-        //  cart.push(productAdd); 
         } else { // le panier a des déjà des élements : verifier si le produit selectionné existe déjà dans le localStorage pour accumuler les quantités
             const sameProducts = cart.find(product => product._id === selectedCamera._id); // recherche les même id
-            if (sameProducts) { // quantité des produits aux mêmes id est calculée en additionnant la quantité déjà présente dans le storage et la nouvelle quantité ajoutée, idem pour prix 
+             // quantité des produits aux mêmes id est calculée en additionnant la quantité déjà présente dans le storage et la nouvelle quantité ajoutée, idem pour prix 
+            if (sameProducts) {
                 sameProducts.quantity = Number(sameProducts.quantity) + Number(selectedCamera.quantity); 
                 sameProducts.price = sameProducts.price + selectedCamera.price; 
             } else {
                 cart.push(selectedCamera);
-                //  cart.push(productAdd); 
             }
         } 
 
         localStorage.setItem("cart", JSON.stringify(cart)); // ajoute l'élement dans le storage
 
-
-        
         //Affichage message pour confirmer ajout panier + résumé + rediriger vers panier ou accueil
             
         document.getElementById("pop-up").innerHTML += `<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
