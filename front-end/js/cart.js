@@ -37,7 +37,7 @@ function loadCart() {
                                                                     </div>
                                                                     <p class="col-sm-2 fw-bold mb-2 price-product" >${item.price} €</p>  
                                                                     <div class="col-md-2 mb-2 d-flex justify-content-center align-items-center">
-                                                                        <input type="number" min="1" max="100" value="${item.quantity}"  id="${item._id}" class="form-control form-select-sm input-sm input-vh inputQuantity" onblur="validateForm(event, '${item._id}')">
+                                                                        <input type="number" min="1" max="100" value="${item.quantity}"  id="${item._id}" class="form-control form-select-sm input-sm input-vh inputQuantity" onblur="validateForm(event, '${item._id}')" onchange="validateForm(event, '${item._id}')">
                                                                     </div>
                                                                     <a href="cart.html" class="col-md-2 mb-4" onclick="removeItem('${item._id}')">supprimer</a> `;
 
@@ -59,11 +59,9 @@ function loadCart() {
 }
 
 //-----------------------------------recalcul du prix si quantité modifiée-----------------------------------//
-//----------------------------------- ERREUR : seule la quantité de la 1ere camera peut être modifiée et prix recalculé, pour autres produits dans le panier, cela rajoute au prix de la 1ere camera, problème boucle ? na pas faire de boucle ?
-//----------------------------------- ERREUR d'affichage : le 1er clic sur l'input n'affiche pas le recalcul du prix mais après c'est ok
-//----------------------------------- ERREUR localStorage : ne se met pas à jour quand on choisi une nouvelle quantité
-function newPrice(item) {
-    let input = document.querySelector('input'); //on récupère l'input sur lequel on click
+//----------------------------------- essayer de refaire mais avec pas input mais 'change' à la place
+/*function newPrice(item) {
+    let input = document.querySelector('.inputQuantity'); //on récupère l'input sur lequel on click
     let priceProduct = document.querySelector('.price-product'); //on récupère le prix qui va être modifié
     input.addEventListener('input', updateValue); // on écoute l'évenement (quantité + ou -) et on appelle la fonction callback
         function updateValue(e) { // fonction qui recalcule le prix en prenant la valeur de l'input*le prix unitaire
@@ -71,12 +69,11 @@ function newPrice(item) {
         }
    
     localStorage.setItem("cart", JSON.stringify(cartRestored));// réengistrer la quantité choisie dans localStorage : ne fonctionne pas
-    
-}
+    location.reload();
+}*/
    
 function validateForm(event, itemId) {
     event.preventDefault();
-
     let input = document.getElementById(itemId);
     // on parcourt le localStorage pour récuperer le produit
     const product = cartRestored.find(item => item._id === itemId);
