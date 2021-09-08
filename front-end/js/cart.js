@@ -2,6 +2,7 @@
 let cartRestored = JSON.parse(localStorage.getItem("cart"));
 let totalPrice = 0;
 let totalQuantity = 0;
+
 // fonction pour afficher le contenu de la page panier et récuperer les elements selectionnés
 function loadCart() { 
     if (cartRestored == null) {
@@ -64,12 +65,11 @@ function loadCart() {
 function newPrice(item) {
     let input = document.querySelector('input'); //on récupère l'input sur lequel on click
     let priceProduct = document.querySelector('.price-product'); //on récupère le prix qui va être modifié
-    // le mettre dans la boucle foreEach ?
-        input.addEventListener('input', updateValue); // on écoute l'évenement (quantité + ou -) et on appelle la fonction callback
+    input.addEventListener('input', updateValue); // on écoute l'évenement (quantité + ou -) et on appelle la fonction callback
         function updateValue(e) { // fonction qui recalcule le prix en prenant la valeur de l'input*le prix unitaire
             priceProduct.textContent = Number(e.target.value)*(item.price/Number(item.quantity)) +" €";
         }
-    
+   
     localStorage.setItem("cart", JSON.stringify(cartRestored));// réengistrer la quantité choisie dans localStorage : ne fonctionne pas
     
 }
