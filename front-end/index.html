@@ -7,14 +7,14 @@
         <meta name="description" content="Chez Oriphoto, nous vous proposons une selection de caméras vintage qui ravira les passionnés de photographie et amateurs d'objets authentiques!">
         
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="front-end/css/style.css" />
+        <link rel="stylesheet" href="css/style.css" />
 
-        <link rel="icon" href="front-end/images/favicon.PNG" />
+        <link rel="icon" href="images/favicon.PNG" />
         <title>Oriphoto - caméras vintage authentiques</title>
 
     </head>
 
-    <body onload="loadProduct()">
+    <body onload="loadCameras()">
         <!-- HEADER -->
         <header>
             <!-- 1er nav-->
@@ -98,61 +98,28 @@
         </header>
 
         <!-- MAIN -->
-        <main>   
-           <div class="container pt-4 pb-5">
-                <!-- LIEN RETOUR-->
+        <main >
+            <!-- MAIN HEADING --> 
+            <div class="container pt-5 heading">
                 <div class="row ">
-                    <div class="col pb-3">
-                        <a href="index.html" class="link-dark text-decoration-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                              </svg>
-                          Retour
-                        </a> 
+                    <div class="col text-center">
+                        <h1 class="fw-bold">BIENVENUE DANS LA BOUTIQUE DES PASSIONNÉ·E·S DE PHOTOGRAPHIE</h1>
+                        <p class="pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id semper nunc, at luctus felis. Aenean facilisis nisi eu leo lobortis hendrerit. Donec eget imperdiet diam. Pellentesque velit nibh, tristique ut posuere sit amet, efficitur condimentum orci. </p>
                     </div>
                 </div>
-
-                <!-- MAIN CARDS -->
-                <div class="card"> 
-                    <div class="container-fluid">
-                        <div class="row no-gutters">
-                            <div id="product-img" class="col-lg-8 p-0">  
-                                <!-- image camera voir template product.js-->
-                            </div>
-                        
-                            <div class="col-lg-4"> 
-                                <div id="product-infos" class="card-body text-center ">
-                                    <!-- les informations sur la camera voir template product.js-->
-                                </div>
-
-                        <div class="text-center">
-                            <p class="text-success card-text">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                                </svg>
-                                En stock
-                            </p>
-            
-                            <div class="d-flex flex-column align-items-center">
-                                <select id="select-lens" class="form-select form-select-sm my-2" aria-label="multiple select" >
-                                    <option value="">Choix lentille</option>
-                                    <!-- liste des options de lentilles selon la camera selectionnée voir boucle product.js-->
-                                </select>
-
-                                <select id="select-quantity" class="form-select form-select-sm my-2" aria-label="multiple select">
-                                    <option value="">Quantité</option>
-                                    <option value="1">1 </option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </div> 
-
-                            <button class="btn btn-primary my-4" onclick="addToCart(event)" data-toggle="modal" data-target="#exampleModalCenter">ajouter au panier</button>
-                            <div id="pop-up"></div>
-                        </div>
+            </div>
+           
+           <div class="container py-4">
+            <!-- MAIN SUBHEADING --> 
+                <div class="row mb-3 mb-lg-4 ">
+                    <div class="col">
+                        <h2 class="subheading">Notre sélection de caméras vintage</h2> 
                     </div>
+                </div>
+            
+
+            <!-- MAIN CARDS --> 
+                <div id="cards" class="row justify-content-center">
                 </div>
             </div>
         </main>
@@ -239,9 +206,8 @@
         </footer>
         
     <!-- Optional JavaScript -->
-        <script src="front-end/js/camera.js"></script>
-        <script src="front-end/js/product.js"></script>
-        
+        <script src="js/camera.js"></script>
+        <script src="js/serviceCamera.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
