@@ -37,7 +37,7 @@ function loadCart() {
                                                                     </div>
                                                                     <p class="col-sm-2 fw-bold mb-2 price-product" >${item.price} €</p>  
                                                                     <div class="col-md-2 mb-2 d-flex justify-content-center align-items-center">
-                                                                        <input type="number" min="1" max="100" pattern="\d*" value="${item.quantity}"  id="${item._id}" class="form-control form-select-sm input-sm input-vh inputQuantity" onblur="validateForm(event, '${item._id}')" onchange="validateForm(event, '${item._id}')">
+                                                                        <input type="number" min="1" max="100" value="${item.quantity}"  id="${item._id}" class="form-control form-select-sm input-sm input-vh inputQuantity" onblur="validateForm(event, '${item._id}')" onchange="validateForm(event, '${item._id}')">
                                                                     </div>
                                                                     <a href="cart.html" class="col-md-2 mb-4" onclick="removeItem('${item._id}')">supprimer</a> `;
 
@@ -59,25 +59,23 @@ function loadCart() {
 }
 
 //-----------------------------------recalcul du prix si quantité modifiée-----------------------------------//
-//----------------------------------- 
-/*function newPrice(item) {
-    let input = document.querySelector('.inputQuantity'); //on récupère l'input sur lequel on click
-    let priceProduct = document.querySelector('.price-product'); //on récupère le prix qui va être modifié
-    input.addEventListener('input', updateValue); // on écoute l'évenement (quantité + ou -) et on appelle la fonction callback
-        function updateValue(e) { // fonction qui recalcule le prix en prenant la valeur de l'input*le prix unitaire
-            priceProduct.textContent = Number(e.target.value)*(item.price/Number(item.quantity)) +" €";
-        }
-   
-    localStorage.setItem("cart", JSON.stringify(cartRestored));// réengistrer la quantité choisie dans localStorage : ne fonctionne pas
-    location.reload();
-}*/
+//----------------------------------- onblur + onchange sur input
    
 function validateForm(event, itemId) {
     event.preventDefault();
     let input = document.getElementById(itemId);
     // on parcourt le localStorage pour récuperer le produit
     const product = cartRestored.find(item => item._id === itemId);
-    const newQuantity = Number(input.value);
+    // si quantité saisie négative, quantité = 1
+    if (input.value <= 0) {
+        input.value = 1;
+      // si +100 saisie, quantité = 100 + message
+    } else if (input.value > 100) {
+       input.value = 100;
+       alert("quantité maximale de 100");
+    }
+    // la quantité est un nombre, converti en entier positif si besoin
+    const newQuantity = Math.abs(Number(input.value).toFixed());
     if (product) {
         console.log(product);
         // gestion du prix
@@ -86,14 +84,9 @@ function validateForm(event, itemId) {
         product.price = prixUnitaire*newQuantity;
         product.quantity = newQuantity;
     }
-    console.log("=============");
     console.log(cartRestored);
     // mise à jour du localStorage
     localStorage.setItem("cart", JSON.stringify(cartRestored));
-    // si la quantité entrée est zéro, enlever le produit
-    if (newQuantity == 0) {
-        removeItem(itemId);
-    } 
     location.reload();
   }
 
@@ -104,7 +97,6 @@ function removeItem(itemId) {
     const newCart = cartRestored.filter(product => product._id !== itemId);
     if (newCart) {
         localStorage.setItem("cart", JSON.stringify(newCart)); // mise à jour du panier
-       
     }
     location.reload();
 } 
