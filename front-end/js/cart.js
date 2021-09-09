@@ -5,7 +5,7 @@ let totalQuantity = 0;
 
 // fonction pour afficher le contenu de la page panier et récuperer les elements selectionnés
 function loadCart() { 
-    if (cartRestored == null) {
+    if (cartRestored == null || cartRestored == 0) {
         document.getElementById("empty-cart").innerHTML = ` <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-basket2" viewBox="0 0 16 16">
                                                                 <path d="M4 10a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0v-2zm3 0a1 1 0 1 1 2 0v2a1 1 0 0 1-2 0v-2z"/>
                                                                 <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-.623l-1.844 6.456a.75.75 0 0 1-.722.544H3.69a.75.75 0 0 1-.722-.544L1.123 8H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.163 8l1.714 6h8.246l1.714-6H2.163z"/>
@@ -37,7 +37,7 @@ function loadCart() {
                                                                     </div>
                                                                     <p class="col-sm-2 fw-bold mb-2 price-product" >${item.price} €</p>  
                                                                     <div class="col-md-2 mb-2 d-flex justify-content-center align-items-center">
-                                                                        <input type="number" min="1" max="100" value="${item.quantity}"  id="${item._id}" class="form-control form-select-sm input-sm input-vh inputQuantity" onblur="validateForm(event, '${item._id}')" onchange="validateForm(event, '${item._id}')">
+                                                                        <input type="number" min="1" max="100" pattern="\d*" value="${item.quantity}"  id="${item._id}" class="form-control form-select-sm input-sm input-vh inputQuantity" onblur="validateForm(event, '${item._id}')" onchange="validateForm(event, '${item._id}')">
                                                                     </div>
                                                                     <a href="cart.html" class="col-md-2 mb-4" onclick="removeItem('${item._id}')">supprimer</a> `;
 
@@ -59,7 +59,7 @@ function loadCart() {
 }
 
 //-----------------------------------recalcul du prix si quantité modifiée-----------------------------------//
-//----------------------------------- essayer de refaire mais avec pas input mais 'change' à la place
+//----------------------------------- 
 /*function newPrice(item) {
     let input = document.querySelector('.inputQuantity'); //on récupère l'input sur lequel on click
     let priceProduct = document.querySelector('.price-product'); //on récupère le prix qui va être modifié
@@ -88,7 +88,12 @@ function validateForm(event, itemId) {
     }
     console.log("=============");
     console.log(cartRestored);
+    // mise à jour du localStorage
     localStorage.setItem("cart", JSON.stringify(cartRestored));
+    // si la quantité entrée est zéro, enlever le produit
+    if (newQuantity == 0) {
+        removeItem(itemId);
+    } 
     location.reload();
   }
 
@@ -99,12 +104,9 @@ function removeItem(itemId) {
     const newCart = cartRestored.filter(product => product._id !== itemId);
     if (newCart) {
         localStorage.setItem("cart", JSON.stringify(newCart)); // mise à jour du panier
+       
     }
-    let cartLength = newCart.length;
-    // s'il n'y a plus de produits dans panier, supprimer le localStorage pour permettre affichage page "panier vide"
-    if (cartLength == 0) { 
-        localStorage.clear(); 
-    }
+    location.reload();
 } 
 
 
