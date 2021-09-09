@@ -37,7 +37,7 @@ function loadCart() {
                                                                     </div>
                                                                     <p class="col-sm-2 fw-bold mb-2 price-product" >${item.price} €</p>  
                                                                     <div class="col-md-2 mb-2 d-flex justify-content-center align-items-center">
-                                                                        <input type="number" min="1" max="100" value="${item.quantity}"  id="${item._id}" class="form-control form-select-sm input-sm input-vh inputQuantity" onblur="validateForm(event, '${item._id}')" onchange="validateForm(event, '${item._id}')">
+                                                                        <input type="number" min="1" max="100" value="${item.quantity}"  id="${item._id}" class="form-control form-select-sm input-sm input-vh" onblur="validateForm(event, '${item._id}')" onchange="validateForm(event, '${item._id}')">
                                                                     </div>
                                                                     <a href="cart.html" class="col-md-2 mb-4" onclick="removeItem('${item._id}')">supprimer</a> `;
 
@@ -96,7 +96,8 @@ function removeItem(itemId) {
     // retourne un nouveau tableau contenant les élements du tableau d'origine qui n'ont pas le même Id que celui du click sur suppr
     const newCart = cartRestored.filter(product => product._id !== itemId);
     if (newCart) {
-        localStorage.setItem("cart", JSON.stringify(newCart)); // mise à jour du panier
+        // mise à jour du panier
+        localStorage.setItem("cart", JSON.stringify(newCart)); 
     }
     location.reload();
 } 
