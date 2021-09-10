@@ -50,8 +50,6 @@ function loadCart() {
                                                                 <div class="row bg-light p-3 justify-content-center rounded">
                                                                     <p class="col fw-bold text-center">TOTAL</p>
                                                                     <p class="col fw-bold text-center">${totalPrice} €</p>
-                                                                    <p class="row fw-light fst-italic">Hors frais de livraison</p>
-                                                                    
                                                                 </div>`;
     }
   
@@ -103,5 +101,24 @@ function removeItem(itemId) {
 } 
 
 
-//-----------------------------------formulaire-----------------------------------//
-//to do
+//-----------------------------------FORMULAIRE-----------------------------------//
+// fonction provenant de bootstrap qui permet d'afficher si des champs sont mal renseignés visuellement
+(function () {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation');
+  
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+  
+          form.classList.add('was-validated')
+        }, false)
+      });
+  })();

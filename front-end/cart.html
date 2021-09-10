@@ -127,30 +127,30 @@
                     <!-- formulaire -->
                     <div class="row">
                         <div class="col d-flex flex-column align-items-center">
-                            <form >
+                            <form class="needs-validation" novalidate>
                                 <h2 class="my-4">Complétez le formulaire ci-dessous pour valider votre commande :</h2>
                                 <div class="row">
                                     <div class="form-group col-md-6 mb-3">
                                         <label for="firstName">Nom</label>
-                                    <input type="text" class="form-control" id="inputFirstName" placeholder="Jean">
+                                    <input type="text" class="form-control" id="inputFirstName" placeholder="DUPONT" required>
                                     </div>
 
                                     <div class="form-group col-md-6 mb-3">
                                         <label for="lastName">Prénom</label>
-                                        <input type="text" class="form-control" id="inputLastName" placeholder="Dupont">
+                                        <input type="text" class="form-control" id="inputLastName" placeholder="Jean" required>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col mb-3">
                                         <label for="address">Adresse</label>
-                                        <input type="text" class="form-control" id="inputAddress" placeholder="1 grande rue">
+                                        <input type="text" class="form-control" id="inputAddress" placeholder="1 Grande rue" required>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col mb-3">
-                                        <label for="adressComplement">Complément d'adresse</label>
+                                        <label for="adressComplement">Complément d'adresse (facultatif)</label>
                                         <input type="text" class="form-control" id="inputAdressComplement" placeholder="Appartement, bâtiment, boite postale...">
                                     </div>
                                 </div>
@@ -158,12 +158,13 @@
                                 <div class="row">
                                     <div class="form-group col-md-9 mb-3">
                                         <label for="city">Ville</label>
-                                        <input type="text" class="form-control" id="inputCity" placeholder="Paris">
+                                        <input type="text" class="form-control" id="inputCity" placeholder="Paris" required>
                                     </div>
                                 
                                     <div class="form-group col-md-3 mb-3">
-                                        <label for="zip">Code Postal</label>
-                                        <input type="text" class="form-control" id="inputZip" placeholder="75000">
+                                        <label for="zipCode">Code Postal</label>
+                                        <input type="number" class="form-control" id="inputZipCode" placeholder="75000" required>
+                                        <div class="invalid-feedback">doit contenir 5 chiffres</div>
                                     </div>
                                 </div>
 
@@ -174,7 +175,8 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
                                             </div>  
-                                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+                                            <div class="invalid-feedback">Veuillez saisir une adresse email valide</div>
                                         </div>
                                     </div>
                                 </div>
