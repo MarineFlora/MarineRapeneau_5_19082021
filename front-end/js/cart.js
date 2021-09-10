@@ -51,7 +51,7 @@ function loadCart() {
                                                                     <p class="col fw-bold text-center">TOTAL</p>
                                                                     <p class="col fw-bold text-center">${totalPrice} €</p>
                                                                     <p class="row fw-light fst-italic">Hors frais de livraison</p>
-                                                                    <a href="#" class="btn btn-primary my-4 w-auto">Valider mon panier</a>
+                                                                    
                                                                 </div>`;
     }
   
