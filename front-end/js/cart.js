@@ -51,6 +51,66 @@ function loadCart() {
                                                                     <p class="col fw-bold text-center">TOTAL</p>
                                                                     <p class="col fw-bold text-center">${totalPrice} €</p>
                                                                 </div>`;
+
+        // affichage du formulaire de contact
+        document.getElementById("form-contact").innerHTML = `<h2 class="my-4">Complétez le formulaire ci-dessous pour valider votre commande :</h2>
+                                                                <div class="row">
+                                                                    <div class="form-group col-md-6 mb-3">
+                                                                        <label for="lastName">Nom</label>
+                                                                        <input type="text" class="form-control text-uppercase" pattern="[A-Za-z- ]+" id="lastName" placeholder="DUPONT" required>
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-6 mb-3">
+                                                                        <label for="firstName">Prénom</label>
+                                                                        <input type="text" class="form-control text-capitalize" pattern="[A-Za-z- ]+" id="firstName" placeholder="Jean" required>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="form-group col mb-3">
+                                                                        <label for="address">Adresse</label>
+                                                                        <input type="text" class="form-control" minlength="7" id="address" placeholder="1 Grande rue" required>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="form-group col mb-3">
+                                                                        <label for="adressComplement">Complément d'adresse (facultatif)</label>
+                                                                        <input type="text" class="form-control" id="adressComplement" placeholder="Appartement, bâtiment, boite postale...">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="form-group col-md-9 mb-3">
+                                                                        <label for="city">Ville</label>
+                                                                        <input type="text" class="form-control text-uppercase" id="city" placeholder="Paris" required>
+                                                                    </div>
+                                                                
+                                                                    <div class="form-group col-md-3 mb-3">
+                                                                        <label for="zipCode">Code Postal</label>
+                                                                        <input type="text" pattern="[0-9]{5}" class="form-control" id="zipCode" placeholder="75000" required>
+                                                                        <div class="invalid-feedback">doit contenir 5 chiffres</div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="form-group col mb-3">
+                                                                        <label for="inputEmail">Email</label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                                                            </div>  
+                                                                            <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                                                            <div class="invalid-feedback">Veuillez saisir une adresse email valide</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="row">
+                                                                    <div class="col text-center">
+                                                                        <button type="submit" class="btn btn-primary fw-bold my-4 w-auto ">Valider mon panier</button>
+                                                                    </div>
+                                                                </div> `;
     }
   
     
@@ -102,6 +162,8 @@ function removeItem(itemId) {
 
 
 //-----------------------------------FORMULAIRE-----------------------------------//
+
+// Validation
 // fonction provenant de bootstrap qui permet d'afficher si des champs sont mal renseignés
 (function () {
      // utilise Javascript en mode strict = semantique légèrement différente du "normal" (élimine certaines erreurs)
