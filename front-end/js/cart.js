@@ -102,14 +102,16 @@ function removeItem(itemId) {
 
 
 //-----------------------------------FORMULAIRE-----------------------------------//
-// fonction provenant de bootstrap qui permet d'afficher si des champs sont mal renseignés visuellement
+// fonction provenant de bootstrap qui permet d'afficher si des champs sont mal renseignés
 (function () {
+     // utilise Javascript en mode strict = semantique légèrement différente du "normal" (élimine certaines erreurs)
     'use strict'
   
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    // Récupère les formulaires sur lesquels ont veut appliquer la validation custom Bootstrap
     var forms = document.querySelectorAll('.needs-validation');
   
-    // Loop over them and prevent submission
+    // boucle le formulaire, quand click sur bouton envoyer, vérifie validité et ajoute la class 'was-validated' = style pour validité, si invalide : empeche l'envoi du form
+    // dernier "();" = exécute immédiatement la fonction
     Array.prototype.slice.call(forms)
       .forEach(function (form) {
         form.addEventListener('submit', function (event) {
