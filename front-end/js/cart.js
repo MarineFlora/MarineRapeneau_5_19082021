@@ -191,24 +191,49 @@ function removeItem(itemId) {
 
   //-----------------------------------Envoi panier + formulaire -----------------------------------//
 
-  function submitOrder(event) {
-      event.preventDefault();
+function submitOrder(event) {
+    event.preventDefault();
 
-      // récupération des valeurs des input 
-      const formData = new FormData(event.target);
-      const lastName = formData.get('lastName');
-      const firstName = formData.get('firstName');
-      const adress = formData.get('adress');
-      const adressComplement = formData.get('adressComplement');
-      const city = formData.get('city');
-      const zipCode = formData.get('zipCode');
-      const email = formData.get('email');
+    // récupération des valeurs des input 
+    const formData = new FormData(event.target);
+    const lastName = formData.get('lastName');
+    const firstName = formData.get('firstName');
+    const adress = formData.get('adress');
+    const adressComplement = formData.get('adressComplement');
+    const city = formData.get('city');
+    const zipCode = formData.get('zipCode');
+    const email = formData.get('email');
 
+    // envoi panier et contact
+    if (cartRestored && cartRestored.length > 0) {
+        // créer une instance de la classe Contact
+        const contact = new Contact(lastName, firstName, adress, adressComplement, city, zipCode, email);
+        // recuperer id produits du panier
+        const productId = [];
+        cartRestored.forEach(product => { 
+            productId.push(product._id)
+        });
+        console.log(productId);
+        // creer commande
+        const order = new Order(contact, productId);
+        let response = sendOrder(order);
 
-      // envoi panier et contact
-      if (form.checkValidity() && cartRestored.length > 0) {
-          // créer une instance de la classe Contact
-          const contact = new Contact(lastName, firstName, adress, adressComplement, city, zipCode, email);
-
+    } else {
+        alert("Veuillez choisir un produit avant de valider votre commande");
       }
-  }
+}
+
+function sendOrder(order){
+    
+    fetch("http://localhost:3000/api/cameras/order", {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(order)
+    });
+    if (response.ok) {
+        return response.json();
+    }
+}
