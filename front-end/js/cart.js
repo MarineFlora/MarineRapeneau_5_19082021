@@ -57,38 +57,38 @@ function loadCart() {
                                                                 <div class="row">
                                                                     <div class="form-group col-md-6 mb-3">
                                                                         <label for="lastName">Nom</label>
-                                                                        <input type="text" class="form-control text-uppercase" pattern="[A-Za-z- ]+" id="lastName" placeholder="DUPONT" required>
+                                                                        <input type="text" id="lastName" name="lastName" class="form-control text-uppercase" pattern="[A-Za-z- ]+" placeholder="DUPONT" required>
                                                                     </div>
 
                                                                     <div class="form-group col-md-6 mb-3">
                                                                         <label for="firstName">Prénom</label>
-                                                                        <input type="text" class="form-control text-capitalize" pattern="[A-Za-z- ]+" id="firstName" placeholder="Jean" required>
+                                                                        <input type="text" id="firstName" name="firstName" class="form-control text-capitalize" pattern="[A-Za-z- ]+"  placeholder="Jean" required>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="row">
                                                                     <div class="form-group col mb-3">
                                                                         <label for="address">Adresse</label>
-                                                                        <input type="text" class="form-control" minlength="7" id="address" placeholder="1 Grande rue" required>
+                                                                        <input type="text" id="address" name="adress" class="form-control" minlength="7" placeholder="1 Grande rue" required>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="row">
                                                                     <div class="form-group col mb-3">
                                                                         <label for="adressComplement">Complément d'adresse (facultatif)</label>
-                                                                        <input type="text" class="form-control" id="adressComplement" placeholder="Appartement, bâtiment, boite postale...">
+                                                                        <input type="text" id="adressComplement" name="adressComplement" class="form-control" placeholder="Appartement, bâtiment, boite postale...">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="row">
                                                                     <div class="form-group col-md-9 mb-3">
                                                                         <label for="city">Ville</label>
-                                                                        <input type="text" class="form-control text-uppercase" id="city" placeholder="Paris" required>
+                                                                        <input type="text" id="city" name="city" class="form-control text-uppercase"  placeholder="Paris" required>
                                                                     </div>
                                                                 
                                                                     <div class="form-group col-md-3 mb-3">
                                                                         <label for="zipCode">Code Postal</label>
-                                                                        <input type="text" pattern="[0-9]{5}" class="form-control" id="zipCode" placeholder="75000" required>
+                                                                        <input type="text" id="zipCode" name="zipCode" pattern="[0-9]{5}" class="form-control"  placeholder="75000" required>
                                                                         <div class="invalid-feedback">doit contenir 5 chiffres</div>
                                                                     </div>
                                                                 </div>
@@ -100,7 +100,7 @@ function loadCart() {
                                                                             <div class="input-group-prepend">
                                                                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
                                                                             </div>  
-                                                                            <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                                                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
                                                                             <div class="invalid-feedback">Veuillez saisir une adresse email valide</div>
                                                                         </div>
                                                                     </div>
@@ -172,7 +172,8 @@ function removeItem(itemId) {
     // Récupère les formulaires sur lesquels ont veut appliquer la validation custom Bootstrap
     var forms = document.querySelectorAll('.needs-validation');
   
-    // boucle le formulaire, quand click sur bouton envoyer, vérifie validité et ajoute la class 'was-validated' = style pour validité, si invalide : empeche l'envoi du form
+    // boucle le formulaire, quand click sur bouton envoyer,  
+    // vérifie validité et ajoute la class 'was-validated' = style pour validité, si invalide : empeche l'envoi du form
     // dernier "();" = exécute immédiatement la fonction
     Array.prototype.slice.call(forms)
       .forEach(function (form) {
@@ -189,3 +190,25 @@ function removeItem(itemId) {
 
 
   //-----------------------------------Envoi panier + formulaire -----------------------------------//
+
+  function submitOrder(event) {
+      event.preventDefault();
+
+      // récupération des valeurs des input 
+      const formData = new FormData(event.target);
+      const lastName = formData.get('lastName');
+      const firstName = formData.get('firstName');
+      const adress = formData.get('adress');
+      const adressComplement = formData.get('adressComplement');
+      const city = formData.get('city');
+      const zipCode = formData.get('zipCode');
+      const email = formData.get('email');
+
+
+      // envoi panier et contact
+      if (form.checkValidity() && cartRestored.length > 0) {
+          // créer une instance de la classe Contact
+          const contact = new Contact(lastName, firstName, adress, adressComplement, city, zipCode, email);
+
+      }
+  }
