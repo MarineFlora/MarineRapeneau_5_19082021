@@ -186,3 +186,6 @@ function removeItem(itemId) {
         }, false)
       });
   })();
+
+
+  //-----------------------------------Envoi panier + formulaire -----------------------------------//
