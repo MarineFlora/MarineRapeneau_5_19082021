@@ -69,14 +69,14 @@ function loadCart() {
                                                                 <div class="row">
                                                                     <div class="form-group col mb-3">
                                                                         <label for="address">Adresse</label>
-                                                                        <input type="text" id="address" name="adress" class="form-control" minlength="7" placeholder="1 Grande rue" required>
+                                                                        <input type="text" id="address" name="address" class="form-control" minlength="7" placeholder="1 Grande rue" required>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="row">
                                                                     <div class="form-group col mb-3">
                                                                         <label for="adressComplement">Complément d'adresse (facultatif)</label>
-                                                                        <input type="text" id="adressComplement" name="adressComplement" class="form-control" placeholder="Appartement, bâtiment, boite postale...">
+                                                                        <input type="text" id="addressComplement" name="addressComplement" class="form-control" placeholder="Appartement, bâtiment, boite postale...">
                                                                     </div>
                                                                 </div>
 
@@ -198,8 +198,8 @@ function submitOrder(event) {
     const formData = new FormData(event.target);
     const lastName = formData.get('lastName');
     const firstName = formData.get('firstName');
-    const adress = formData.get('adress');
-    const adressComplement = formData.get('adressComplement');
+    const address = formData.get('address');
+    const addressComplement = formData.get('addressComplement');
     const city = formData.get('city');
     const zipCode = formData.get('zipCode');
     const email = formData.get('email');
@@ -207,7 +207,7 @@ function submitOrder(event) {
     // envoi panier et contact
     if (cartRestored && cartRestored.length > 0) {
         // créer une instance de la classe Contact
-        const contact = new Contact(lastName, firstName, adress, adressComplement, city, zipCode, email);
+        const contact = new Contact(lastName, firstName, address, addressComplement, city, zipCode, email);
         // recuperer id produits du panier
         const productId = [];
         cartRestored.forEach(product => { 
@@ -216,24 +216,31 @@ function submitOrder(event) {
         console.log(productId);
         // creer commande
         const order = new Order(contact, productId);
-        let response = sendOrder(order);
+        // envoi des données au back et recup orderId
+        sendOrder(order);
 
     } else {
         alert("Veuillez choisir un produit avant de valider votre commande");
       }
 }
 
+// requête POST pour envoi données
 function sendOrder(order){
-    
     fetch("http://localhost:3000/api/cameras/order", {
         method: "POST",
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(order)
-    });
-    if (response.ok) {
-        return response.json();
-    }
+        body: JSON.stringify(order),
+    })
+   
+    .then((response) => response.json())
+    .then((response) => {
+         let orderId = response.orderId;
+         console.log(orderId);
+         localStorage.setItem("orderId", orderId);
+        window.location = 'confirmation.html';
+      });
 }
+

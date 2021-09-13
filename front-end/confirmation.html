@@ -14,7 +14,7 @@
 
     </head>
 
-    <body onload="loadCart()">
+    <body>
         <!-- HEADER -->
         <header>
             <!-- 1er nav-->
@@ -99,61 +99,32 @@
 
         <!-- MAIN -->
         <main>   
-           <div class="container pt-4 pb-5">
+            <div class="container pt-4 pb-5">
                 <!-- Timeline-->
                 <ul class="row justify-content-center list-unstyled text-center mb-5">
-                    <li class="col-3 fw-bold bg-primary">1. Panier</li>
-                    <li class="col-4 fw-light bg-light p-0">2. Confirmation</li>
+                    <li class="col-3 fw-light bg-light">1. Panier</li>
+                    <li class="col-4 fw-bold bg-primary p-0">2. Confirmation</li>
                 </ul>
-
-                 <!-- Message panier vide -->
-                 <div id="empty-cart" class="d-flex flex-column align-items-center">
-                </div>
-
-                <!-- RECAPITULATIF COMMANDE  -->
-                <div id="cart-layout">
-                    <div id="continue-shopping" class="row flex-column"><!-- lien de retour + titre --></div>
-
-                    <div class="row mx-2">
-                        <div class="col-lg-9 col my-2">
-                            <div id="cart-products" class="row p-3 text-center justify-content-between align-items-center">
-                                <!-- affichage produits ajoutés au panier -->
-                            </div>
-                        </div>
-
-                        <div id="cart-total" class="col-lg-3 my-2"><!-- affichage total + btn valider --></div>
-                    </div>
-                   
-                    <!-- formulaire -->
-                    <div class="row">
-                        <div  class="col d-flex flex-column align-items-center">
-                            <form id="form-contact" onsubmit="submitOrder(event)" class="needs-validation" novalidate>
-                               <!-- affichage du formulaire de contact pour valider commande--> 
-                            </form>
-                        </div>
-                    </div>       
-                      
-
-                </div>
             </div>
         </main>
 
         
-    <!-- Optional JavaScript -->
+        <!-- Optional JavaScript -->
         <script src="js/camera.js"></script>
         <script src="js/contact.js"></script>
         <script src="js/order.js"></script>
         <script src="js/cart.js" ></script>
-        
-
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+            
     
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        
     </body>
-
+    
 </html>
-
+    
+    
