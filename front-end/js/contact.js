@@ -4,8 +4,8 @@ class Contact {
     constructor(lastName, firstName, adress, adressComplement, city, zipCode, email) {
         this.lastName = lastName;
         this.firstName = firstName;
-        this.adress = adress;
-        this.adressComplement = adressComplement;
+        this.address = address;
+        this.addressComplement = addressComplement;
         this.city = city;
         this.zipCode = zipCode;
         this.email = email;
