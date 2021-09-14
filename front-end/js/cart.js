@@ -110,7 +110,7 @@ function loadCart() {
                                                                 
                                                                 <div class="row">
                                                                     <div class="col text-center">
-                                                                        <button type="submit" class="btn btn-primary fw-bold my-4 w-auto ">Valider mon panier</button>
+                                                                        <button type="submit" id="cart-valid" class="btn btn-primary fw-bold my-4 w-auto ">Valider mon panier</button>
                                                                     </div>
                                                                 </div> `;
     }
@@ -119,7 +119,7 @@ function loadCart() {
 }
 
 //-----------------------------------recalcul du prix si quantité modifiée-----------------------------------//
-//----------------------------------- onblur + onchange sur input
+//----------------------------------- onblur + onchange sur input number de cart-products
    
 function validateForm(event, itemId) {
     event.preventDefault();
@@ -164,10 +164,9 @@ function removeItem(itemId) {
 
 
 //-----------------------------------FORMULAIRE-----------------------------------//
-
 // Validation
 // fonction provenant de bootstrap qui permet d'afficher si des champs sont mal renseignés
-(function () {
+(function formValidation() {
      // utilise Javascript en mode strict = semantique légèrement différente du "normal" (élimine certaines erreurs)
     'use strict'
   
@@ -191,7 +190,9 @@ function removeItem(itemId) {
   })();
 
 
-  //-----------------------------------Envoi panier + formulaire -----------------------------------//
+//-----------------------------------Envoi panier + formulaire -----------------------------------//
+//----------------------------------- onsubmit sur form (btn "valider mon panier") 
+//ERREUR : la validation du form n'est pas faite avec la fonction submitOrder activée, faire onsubmitformValidation ?
 
 function submitOrder(event) {
     event.preventDefault();
@@ -239,10 +240,13 @@ function sendOrder(order){
    
     .then((response) => response.json())
     .then((response) => {
-         let orderId = response.orderId;
-         console.log(orderId);
-         localStorage.setItem("orderId", orderId);
+        // recuperation du numero de commande
+        let orderId = response.orderId;
+        console.log(orderId);
+        localStorage.setItem("orderId", orderId);
         window.location = 'confirmation.html';
-      });
+      })
+    .catch(error => console.log(error)); 
 }
+
 
