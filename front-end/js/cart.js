@@ -45,12 +45,14 @@ function loadCart() {
           
         });
                                                     
-        //affichage du prix total -- note : "valider panier" à mettre après le formulaire
+        //affichage du prix total
         document.getElementById("cart-total").innerHTML = `<h2 class="row text-left pb-2">Récapitulatif</h2>
                                                                 <div class="row bg-light p-3 justify-content-center rounded">
                                                                     <p class="col fw-bold text-center">TOTAL</p>
                                                                     <p class="col fw-bold text-center">${totalPrice} €</p>
                                                                 </div>`;
+        localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+        console.log(totalPrice);
 
         // affichage du formulaire de contact
         document.getElementById("form-contact").innerHTML = `<h2 class="my-4">Complétez le formulaire ci-dessous pour valider votre commande :</h2>
