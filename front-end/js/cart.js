@@ -37,7 +37,7 @@ function loadCart() {
                                                                     </div>
                                                                     <p class="col-sm-2 fw-bold mb-2 price-product" >${item.price} €</p>  
                                                                     <div class="col-md-2 mb-2 d-flex justify-content-center align-items-center">
-                                                                        <input type="number" min="1" max="100" value="${item.quantity}"  id="${item._id}" class="form-control form-select-sm input-sm input-vh" onblur="validateForm(event, '${item._id}')" onchange="validateForm(event, '${item._id}')">
+                                                                        <input type="number" min="1" max="100" value="${item.quantity}"  id="${item._id}" class="form-control form-select-sm input-sm input-vh" onblur="priceUpdate(event, '${item._id}')" onchange="priceUpdate(event, '${item._id}')">
                                                                     </div>
                                                                     <a href="cart.html" class="col-md-2 mb-4" onclick="removeItem('${item._id}')">supprimer</a> `;
 
@@ -45,12 +45,14 @@ function loadCart() {
           
         });
                                                     
-        //affichage du prix total -- note : "valider panier" à mettre après le formulaire
+        //affichage du prix total
         document.getElementById("cart-total").innerHTML = `<h2 class="row text-left pb-2">Récapitulatif</h2>
                                                                 <div class="row bg-light p-3 justify-content-center rounded">
                                                                     <p class="col fw-bold text-center">TOTAL</p>
                                                                     <p class="col fw-bold text-center">${totalPrice} €</p>
                                                                 </div>`;
+        localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+        console.log(totalPrice);
 
         // affichage du formulaire de contact
         document.getElementById("form-contact").innerHTML = `<h2 class="my-4">Complétez le formulaire ci-dessous pour valider votre commande :</h2>
@@ -108,7 +110,7 @@ function loadCart() {
                                                                 
                                                                 <div class="row">
                                                                     <div class="col text-center">
-                                                                        <button type="submit" class="btn btn-primary fw-bold my-4 w-auto ">Valider mon panier</button>
+                                                                        <button type="submit" id="cart-valid" class="btn btn-primary fw-bold my-4 w-auto ">Valider mon panier</button>
                                                                     </div>
                                                                 </div> `;
     }
@@ -117,9 +119,9 @@ function loadCart() {
 }
 
 //-----------------------------------recalcul du prix si quantité modifiée-----------------------------------//
-//----------------------------------- onblur + onchange sur input
+//----------------------------------- onblur + onchange sur input number de cart-products
    
-function validateForm(event, itemId) {
+function priceUpdate(event, itemId) {
     event.preventDefault();
     let input = document.getElementById(itemId);
     // on parcourt le localStorage pour récuperer le produit
@@ -162,10 +164,9 @@ function removeItem(itemId) {
 
 
 //-----------------------------------FORMULAIRE-----------------------------------//
-
 // Validation
 // fonction provenant de bootstrap qui permet d'afficher si des champs sont mal renseignés
-(function () {
+(function formValidation() {
      // utilise Javascript en mode strict = semantique légèrement différente du "normal" (élimine certaines erreurs)
     'use strict'
   
@@ -189,7 +190,9 @@ function removeItem(itemId) {
   })();
 
 
-  //-----------------------------------Envoi panier + formulaire -----------------------------------//
+//-----------------------------------Envoi panier + formulaire -----------------------------------//
+//----------------------------------- onsubmit sur form (btn "valider mon panier") 
+//ERREUR : la validation du form n'est pas faite avec la fonction submitOrder activée, faire onsubmitformValidation ?
 
 function submitOrder(event) {
     event.preventDefault();
@@ -237,10 +240,13 @@ function sendOrder(order){
    
     .then((response) => response.json())
     .then((response) => {
-         let orderId = response.orderId;
-         console.log(orderId);
-         localStorage.setItem("orderId", orderId);
+        // recuperation du numero de commande
+        let orderId = response.orderId;
+        console.log(orderId);
+        localStorage.setItem("orderId", orderId);
         window.location = 'confirmation.html';
-      });
+      })
+    .catch(error => console.log(error)); 
 }
+
 
