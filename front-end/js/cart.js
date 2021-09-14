@@ -40,9 +40,6 @@ function loadCart() {
                                                                         <input type="number" min="1" max="100" value="${item.quantity}"  id="${item._id}" class="form-control form-select-sm input-sm input-vh" onblur="priceUpdate(event, '${item._id}')" onchange="priceUpdate(event, '${item._id}')">
                                                                     </div>
                                                                     <a href="cart.html" class="col-md-2 mb-4" onclick="removeItem('${item._id}')">supprimer</a> `;
-
-            
-          
         });
                                                     
         //affichage du prix total
@@ -114,8 +111,6 @@ function loadCart() {
                                                                     </div>
                                                                 </div> `;
     }
-  
-    
 }
 
 //-----------------------------------recalcul du prix si quantité modifiée-----------------------------------//
@@ -151,6 +146,7 @@ function priceUpdate(event, itemId) {
   }
 
 //-----------------------------------supprimer un produit-----------------------------------//
+//----------------------------------- onclick sur lien "supprimer" de cart-products
 
 function removeItem(itemId) {
     // retourne un nouveau tableau contenant les élements du tableau d'origine qui n'ont pas le même Id que celui du click sur suppr
@@ -169,10 +165,8 @@ function removeItem(itemId) {
 (function formValidation() {
      // utilise Javascript en mode strict = semantique légèrement différente du "normal" (élimine certaines erreurs)
     'use strict'
-  
     // Récupère les formulaires sur lesquels ont veut appliquer la validation custom Bootstrap
     var forms = document.querySelectorAll('.needs-validation');
-  
     // boucle le formulaire, quand click sur bouton envoyer,  
     // vérifie validité et ajoute la class 'was-validated' = style pour validité, si invalide : empeche l'envoi du form
     // dernier "();" = exécute immédiatement la fonction
@@ -183,7 +177,6 @@ function removeItem(itemId) {
             event.preventDefault()
             event.stopPropagation()
           }
-  
           form.classList.add('was-validated')
         }, false)
       });
@@ -193,6 +186,7 @@ function removeItem(itemId) {
 //-----------------------------------Envoi panier + formulaire -----------------------------------//
 //----------------------------------- onsubmit sur form (btn "valider mon panier") 
 //ERREUR : la validation du form n'est pas faite avec la fonction submitOrder activée, faire onsubmitformValidation ?
+// ERREUR : le form est validé après la mathode post et si invalide ne bloque pas l'envoi donc
 
 function submitOrder(event) {
     event.preventDefault();
