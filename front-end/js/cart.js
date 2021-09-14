@@ -1,9 +1,10 @@
-//-----------------------------------récupération du panier-----------------------------------//
+// récupération du panier
 let cartRestored = JSON.parse(localStorage.getItem("cart"));
+
 let totalPrice = 0;
 let totalQuantity = 0;
 
-// fonction pour afficher le contenu de la page panier et récuperer les elements selectionnés
+//----------------------------------- afficher le contenu de la page panier -----------------------------------//
 function loadCart() { 
     if (cartRestored == null || cartRestored == 0) {
         document.getElementById("empty-cart").innerHTML = ` <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-basket2" viewBox="0 0 16 16">
@@ -40,9 +41,6 @@ function loadCart() {
                                                                         <input type="number" min="1" max="100" value="${item.quantity}"  id="${item._id}" class="form-control form-select-sm input-sm input-vh" onblur="priceUpdate(event, '${item._id}')" onchange="priceUpdate(event, '${item._id}')">
                                                                     </div>
                                                                     <a href="cart.html" class="col-md-2 mb-4" onclick="removeItem('${item._id}')">supprimer</a> `;
-
-            
-          
         });
                                                     
         //affichage du prix total
@@ -114,11 +112,10 @@ function loadCart() {
                                                                     </div>
                                                                 </div> `;
     }
-  
-    
 }
 
-//-----------------------------------recalcul du prix si quantité modifiée-----------------------------------//
+
+//----------------------------------- recalcul du prix si quantité modifiée-----------------------------------//
 //----------------------------------- onblur + onchange sur input number de cart-products
    
 function priceUpdate(event, itemId) {
@@ -150,7 +147,9 @@ function priceUpdate(event, itemId) {
     location.reload();
   }
 
-//-----------------------------------supprimer un produit-----------------------------------//
+
+//----------------------------------- supprimer un produit-----------------------------------//
+//----------------------------------- onclick sur lien "supprimer" de cart-products
 
 function removeItem(itemId) {
     // retourne un nouveau tableau contenant les élements du tableau d'origine qui n'ont pas le même Id que celui du click sur suppr
@@ -163,36 +162,35 @@ function removeItem(itemId) {
 } 
 
 
-//-----------------------------------FORMULAIRE-----------------------------------//
-// Validation
-// fonction provenant de bootstrap qui permet d'afficher si des champs sont mal renseignés
+//----------------------------------- FORMULAIRE -----------------------------------//
+// Validation des champs et envoi
+// fonction base provenant de bootstrap, customisée
+// dernier "();" = exécute immédiatement la fonction
+
 (function formValidation() {
      // utilise Javascript en mode strict = semantique légèrement différente du "normal" (élimine certaines erreurs)
     'use strict'
-  
-    // Récupère les formulaires sur lesquels ont veut appliquer la validation custom Bootstrap
-    var forms = document.querySelectorAll('.needs-validation');
-  
-    // boucle le formulaire, quand click sur bouton envoyer,  
-    // vérifie validité et ajoute la class 'was-validated' = style pour validité, si invalide : empeche l'envoi du form
-    // dernier "();" = exécute immédiatement la fonction
-    Array.prototype.slice.call(forms)
-      .forEach(function (form) {
+    // Récupère le formulaire sur lequel ont veut appliquer la validation Bootstrap
+    var form = document.querySelector('.needs-validation');
+        // écoute du submit sur button
         form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
+            // ajoute la class 'was-validated' = style pour in-validité
+            form.classList.add('was-validated');
+            // si champ invalide : empeche l'envoi du form
+            if (!form.checkValidity()) {
             event.preventDefault()
             event.stopPropagation()
-          }
-  
-          form.classList.add('was-validated')
-        }, false)
-      });
+            } 
+            // sinon envoi la commande
+            else {
+              submitOrder(event);
+            }
+        });
   })();
 
 
-//-----------------------------------Envoi panier + formulaire -----------------------------------//
-//----------------------------------- onsubmit sur form (btn "valider mon panier") 
-//ERREUR : la validation du form n'est pas faite avec la fonction submitOrder activée, faire onsubmitformValidation ?
+//----------------------------------- Envoi panier + formulaire -----------------------------------//
+//----------------------------------- appellée dans fonction formValidation()
 
 function submitOrder(event) {
     event.preventDefault();
@@ -220,7 +218,7 @@ function submitOrder(event) {
         // creer commande
         const order = new Order(contact, productId);
         // envoi des données au back et recup orderId
-        sendOrder(order);
+        sendOrderData(order);
 
     } else {
         alert("Veuillez choisir un produit avant de valider votre commande");
@@ -228,7 +226,7 @@ function submitOrder(event) {
 }
 
 // requête POST pour envoi données
-function sendOrder(order){
+function sendOrderData(order){
     fetch("http://localhost:3000/api/cameras/order", {
         method: "POST",
         headers: {
