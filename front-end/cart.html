@@ -14,7 +14,7 @@
 
     </head>
 
-    <body onload="loadCart()">
+    <body onload="loadCart() & updateHeaderCart()">
         <!-- HEADER -->
         <header>
             <!-- 1er nav-->
@@ -36,7 +36,7 @@
                                 Oriphoto
                             </a>
 
-                            <ul class="navbar-nav d-flex">
+                            <ul class="navbar-nav d-flex align-items-center">
                                     <li class="nav-item">
                                         <a class="nav-link d-flex align-items-center" href="#">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="mx-2 bi bi-person navbar-icon" viewBox="0 0 16 16">
@@ -46,13 +46,16 @@
                                         </a>
                                     </li>
                                 
-                                    <li class="nav-item fw-bold">
-                                        <a class="nav-link d-flex align-items-center" href="cart.html">
+                                    <li class="nav-item fw-bold d-flex align-items-center cart-header">
+                                        <a class="nav-link" href="cart.html">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="mx-2 bi bi-basket2-fill navbar-icon" viewBox="0 0 16 16">
                                                 <path d="M5.929 1.757a.5.5 0 1 0-.858-.514L2.217 6H.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h.623l1.844 6.456A.75.75 0 0 0 3.69 15h8.622a.75.75 0 0 0 .722-.544L14.877 8h.623a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1.717L10.93 1.243a.5.5 0 1 0-.858.514L12.617 6H3.383L5.93 1.757zM4 10a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm4-1a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1z"/>
                                             </svg>
+                                            
                                             <span>Mon panier</span>
+                                           
                                         </a>
+                                        <div class="cart-header__number d-flex justify-content-center"><!-- totalQuantity--> </div> 
                                     </li>
                             </ul>
                             
@@ -144,6 +147,7 @@
         <script src="js/contact.js"></script>
         <script src="js/order.js"></script>
         <script src="js/cart.js" ></script>
+        <script src="js/headerCartNumber.js"></script>
         
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

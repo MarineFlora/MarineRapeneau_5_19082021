@@ -19,6 +19,8 @@ function loadCart() {
         cartRestored.forEach(item => {
             totalPrice += item.price;
             totalQuantity += Number(item.quantity);
+            localStorage.setItem("totalQuantity", JSON.stringify(totalQuantity));
+            console.log(totalQuantity);
             
             document.getElementById("continue-shopping").innerHTML = `  <div class="col pb-3">
                                                                             <a href="index.html" class="link-dark text-decoration-none">
@@ -51,6 +53,7 @@ function loadCart() {
                                                                 </div>`;
         localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
         console.log(totalPrice);
+       
 
         // affichage du formulaire de contact
         document.getElementById("form-contact").innerHTML = `<h2 class="my-4">Complétez le formulaire ci-dessous pour valider votre commande :</h2>
