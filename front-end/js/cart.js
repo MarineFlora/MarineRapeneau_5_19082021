@@ -1,18 +1,14 @@
 // récupération du panier
 let cartRestored = JSON.parse(localStorage.getItem("cart"));
 
-function removeDisplayNone(element) {
-    element.classList.remove("d-none");
-  }
-
-
 //----------------------------------- afficher le contenu de la page panier -----------------------------------//
 function loadCart() { 
         if (cartRestored.length > 0) {
-            // fait apparaitre les elements cachés de cart.html pour la panier plein : form, lien retour, titre
-            const cartFullDisplay = document.querySelector(".cart-full-display");                                                     
-            removeDisplayNone(cartFullDisplay);
-
+            // fait apparaitre les elements html cachés pour la panier plein : form, lien retour, titre
+            const cartFullDisplay = document.querySelector(".cart-full-display");     
+            cartFullDisplay.classList.remove("d-none");                                                
+            
+            // initialisation variables
             let cartElements = "";
             let totalPrice = 0;
             let totalQuantity = 0;
@@ -51,8 +47,9 @@ function loadCart() {
         
 
         } else {
-            const cartEmpty = document.getElementById("empty-cart");
-            removeDisplayNone(cartEmpty);
+            // fait apparaitre les elements html de la page panier vide
+            const emptyCartDisplay = document.getElementById("empty-cart");
+            emptyCartDisplay.classList.remove("d-none");
         }
 }
 
