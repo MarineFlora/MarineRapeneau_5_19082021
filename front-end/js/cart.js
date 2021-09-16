@@ -19,17 +19,15 @@ function loadCart() {
                 localStorage.setItem("totalQuantity", JSON.stringify(totalQuantity));
                 cartElements += buildCartElements(item);
             });
-            if (cartElements) {
-                // affichage HTML des éléments
+            // affichage HTML des éléments
+            if (cartElements) { 
                 document.getElementById("cart-products").innerHTML = cartElements;
                 document.getElementById("cart-title").innerHTML = `<h1>Mon panier (${totalQuantity} produits)</h1>`;                                 
-                //affichage du prix total
                 document.getElementById("cart-total").innerHTML = ` <p class="col fw-bold text-center">TOTAL</p>
                                                                     <p class="col fw-bold text-center">${totalPrice} €</p>`;
                 localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
                 console.log(totalPrice);
-            }
-            
+            } 
 
         } else {
             // fait apparaitre les elements html de la page panier vide
