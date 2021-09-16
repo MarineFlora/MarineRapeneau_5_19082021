@@ -72,8 +72,8 @@ function addToCart(event) {
         // ajoute l'élement dans le storage
         localStorage.setItem("cart", JSON.stringify(cart)); 
 
-        //Affichage message pour confirmer ajout panier + résumé + rediriger vers panier ou accueil
-        document.getElementById("pop-up").innerHTML += buildPopUpMessage(selectedCamera);
+        // Affichage message pop-up
+        buildPopUpMessage(selectedCamera);
             
     }
 

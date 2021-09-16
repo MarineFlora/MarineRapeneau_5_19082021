@@ -11306,4 +11306,10 @@ footer .second-footer-area .footer-heading--brand {
   }
 }
 
+@media (max-width: 767.98px) {
+  .cart-subheading {
+    display: none;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */

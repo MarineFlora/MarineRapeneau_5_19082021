@@ -22,3 +22,9 @@
         }
     }
 }
+
+.cart-subheading {
+    @include media-breakpoint-down(md) {
+        display: none;
+      }
+}
