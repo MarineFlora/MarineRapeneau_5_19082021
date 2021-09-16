@@ -3,8 +3,8 @@ let cartRestored = JSON.parse(localStorage.getItem("cart"));
 
 //----------------------------------- afficher le contenu de la page panier -----------------------------------//
 function loadCart() { 
-        if (cartRestored.length > 0) {
-            // fait apparaitre les elements html cachés pour la panier plein : form, lien retour, titre
+        if (cartRestored && cartRestored.length > 0) {
+            // fait apparaitre les elements html cachés pour le panier plein : form, lien retour, titre
             const cartFullDisplay = document.querySelector(".cart-full-display");     
             cartFullDisplay.classList.remove("d-none");                                                
             
@@ -12,39 +12,24 @@ function loadCart() {
             let cartElements = "";
             let totalPrice = 0;
             let totalQuantity = 0;
-            // boucle pour chaque élement enregistré dans le local storage, ajouter cet html
+            // boucle pour chaque camera enregistrée dans le localstorage, retour des informations, prix et quantité
             cartRestored.forEach(item => {
                 totalPrice += item.price;
                 totalQuantity += Number(item.quantity);
                 localStorage.setItem("totalQuantity", JSON.stringify(totalQuantity));
-                console.log(totalQuantity);
-                
-                
-
-                cartElements += ` <div class="col-sm-3 mb-2">
-                                                                            <img id="product-img" class="camera-mini" src="${item.imageUrl}" alt="camera vintage ${item.name} " />
-                                                                        </div>
-                                                                        <div class="col-sm-3">
-                                                                            <p class="mb-2">${item.name}</p>
-                                                                        </div>
-                                                                        <p class="col-sm-2 fw-bold mb-2 price-product" >${item.price} €</p>  
-                                                                        <div class="col-md-2 mb-2 d-flex justify-content-center align-items-center">
-                                                                            <input type="number" min="1" max="100" value="${item.quantity}"  id="${item._id}" class="form-control form-select-sm input-sm input-vh" onblur="priceUpdate(event, '${item._id}')" onchange="priceUpdate(event, '${item._id}')" />
-                                                                        </div>
-                                                                        <a href="cart.html" class="col-md-2 mb-4" onclick="removeItem('${item._id}')">supprimer</a> `;
+                cartElements += buildCartElements(item);
             });
-            document.getElementById("cart-products").innerHTML = cartElements;
-            document.getElementById("cart-title").innerHTML = `<h1> Mon panier (${totalQuantity} produits)</h1>`;
-                                                        
-            //affichage du prix total
-            document.getElementById("cart-total").innerHTML = `
-                                                                    
-                                                                        <p class="col fw-bold text-center">TOTAL</p>
-                                                                        <p class="col fw-bold text-center">${totalPrice} €</p>
-                                                                    `;
-            localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
-            console.log(totalPrice);
-        
+            if (cartElements) {
+                // affichage HTML des éléments
+                document.getElementById("cart-products").innerHTML = cartElements;
+                document.getElementById("cart-title").innerHTML = `<h1>Mon panier (${totalQuantity} produits)</h1>`;                                 
+                //affichage du prix total
+                document.getElementById("cart-total").innerHTML = ` <p class="col fw-bold text-center">TOTAL</p>
+                                                                    <p class="col fw-bold text-center">${totalPrice} €</p>`;
+                localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+                console.log(totalPrice);
+            }
+            
 
         } else {
             // fait apparaitre les elements html de la page panier vide
