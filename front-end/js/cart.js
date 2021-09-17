@@ -20,6 +20,7 @@ function loadCart() {
                 cartElements += buildCartElements(item);
                 localStorage.setItem("totalQuantity", JSON.stringify(totalQuantity));
                 localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+                console.log(totalPrice);
                 // mise à jour panier du header
                 updateHeaderCart();
             });
@@ -30,7 +31,7 @@ function loadCart() {
                 document.getElementById("cart-products").innerHTML = cartElements;
                 document.getElementById("cart-title").innerHTML = `<h1>Mon panier (${totalQuantity} produits)</h1>`;                                 
                 document.getElementById("cart-total").innerHTML = ` <p class="col fw-bold text-center">TOTAL</p>
-                                                                    <p class="col fw-bold text-center">${totalPrice} €</p>`;
+                                                                    <p class="col fw-bold text-center">${totalPrice.toLocaleString("fr-FR", {minimumFractionDigits: 2})} €</p>`;
                                                                    
             } 
           

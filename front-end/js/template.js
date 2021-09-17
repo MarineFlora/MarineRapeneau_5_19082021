@@ -25,7 +25,7 @@ function displayProduct(camera) {
     if (camera) {
         document.getElementById("product-img").innerHTML += `<img class="card-img-top card-img-cam" src="${camera.imageUrl}" alt="camera vintage ${camera.name}" />`; 
         document.getElementById("product-infos").innerHTML +=` <h1 class="card-title fw-bold">${camera.name}</h1>
-                                                                <p class="card-text price fw-bold">${camera.price/100} €</p>
+                                                                <p class="card-text price fw-bold">${(camera.price/100).toLocaleString("fr-FR", {minimumFractionDigits: 2})} €</p>
                                                                 <p class="card-text">${camera.description}</p>;` 
     }   
 }
@@ -85,7 +85,7 @@ function buildCartElements(item) {
                 <div class="col-sm-3">
                     <p class="mb-2">${item.name}</p>
                 </div>
-                <p class="col-sm-2 fw-bold mb-2 price-product" >${item.price} €</p>  
+                <p class="col-sm-2 fw-bold mb-2 price-product" >${item.price.toLocaleString("fr-FR", {minimumFractionDigits: 2})} €</p>  
                 <div class="col-md-2 mb-2 d-flex justify-content-center justify-content-md-center justify-content-sm-end align-items-center ">
                     <input type="number" min="1" max="100" value="${item.quantity}" id="${item._id}" class="form-control form-select-sm input-sm input-vh" onblur="priceUpdate(event, '${item._id}')" onchange="priceUpdate(event, '${item._id}')" />
                 </div>

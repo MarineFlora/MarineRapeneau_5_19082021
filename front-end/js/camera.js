@@ -5,10 +5,14 @@ class Camera {
     constructor(jsonCamera) {
         this.id = jsonCamera._id;
         this.name = jsonCamera.name;
-        this.price = jsonCamera.price/100;
+        this.price = (jsonCamera.price/100).toLocaleString("fr-FR", {minimumFractionDigits: 2});
         this.description = jsonCamera.description;
         this.imageUrl = jsonCamera.imageUrl;
         this.lenses = jsonCamera.lenses;
     }
 }
 
+
+// formatage nombre
+//const nombreFormat = new Intl.NumberFormat("fr-FR").format(number));
+//number.toLocaleString("fr-FR")

@@ -7,11 +7,11 @@ function loadOrderInfo() {
     // récupération de la quantité
     const totalQuantity = localStorage.getItem("totalQuantity");
     //récupération prix total
-    const totalPrice = localStorage.getItem("totalPrice");
+    const totalPrice = Number(localStorage.getItem("totalPrice"));
     
     if (orderIdRestored) {
         document.getElementById("order-info").innerHTML = ` <p>Nombre d'articles commandés : <strong>${totalQuantity}</strong></p>
-                                                            <p>Montant total de votre commande : <strong>${totalPrice} €</strong></p>
+                                                            <p>Montant total de votre commande : <strong>${totalPrice.toLocaleString("fr-FR", {minimumFractionDigits: 2})} €</strong></p>
                                                             <p>Commande n° : <strong>${orderIdRestored}</strong></p>`
         localStorage.clear(); 
     } 
