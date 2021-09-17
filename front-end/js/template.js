@@ -17,24 +17,6 @@ function buildCameras(camera) {
 }
 
 
-//----------------------------------- PAGE cart.js -----------------------------------//
-// retour des informations, prix et quantité des cameras ajoutées au panier
-// appelée dans fonction loadCart()
-function buildCartElements(item) {
-    return `<div class="col-sm-3 mb-2">
-                    <img id="product-img" class="camera-mini" src="${item.imageUrl}" alt="camera vintage ${item.name} " />
-                </div>
-                <div class="col-sm-3">
-                    <p class="mb-2">${item.name}</p>
-                </div>
-                <p class="col-sm-2 fw-bold mb-2 price-product" >${item.price} €</p>  
-                <div class="col-md-2 mb-2 d-flex justify-content-center justify-content-md-center justify-content-sm-end align-items-center ">
-                    <input type="number" min="1" max="100" value="${item.quantity}" id="${item._id}" class="form-control form-select-sm input-sm input-vh" onblur="priceUpdate(event, '${item._id}')" onchange="priceUpdate(event, '${item._id}')" />
-                </div>
-                <a href="cart.html" class="col-md-2 mb-4 text-sm-end text-md-center" onclick="removeItem('${item._id}')">supprimer</a>`; 
-}
-
-
 //----------------------------------- PAGE product.js -----------------------------------//
 
 // fonction pour afficher le produit choisi
@@ -90,4 +72,22 @@ function buildPopUpMessage(selectedCamera) {
                                                                     </div>
                                                                 </div>
                                                             </div> `
+}
+
+
+//----------------------------------- PAGE cart.js -----------------------------------//
+// retour des informations, prix et quantité des cameras ajoutées au panier
+// appelée dans fonction loadCart()
+function buildCartElements(item) {
+    return `<div class="col-sm-3 mb-2">
+                    <img id="product-img" class="camera-mini" src="${item.imageUrl}" alt="camera vintage ${item.name} " />
+                </div>
+                <div class="col-sm-3">
+                    <p class="mb-2">${item.name}</p>
+                </div>
+                <p class="col-sm-2 fw-bold mb-2 price-product" >${item.price} €</p>  
+                <div class="col-md-2 mb-2 d-flex justify-content-center justify-content-md-center justify-content-sm-end align-items-center ">
+                    <input type="number" min="1" max="100" value="${item.quantity}" id="${item._id}" class="form-control form-select-sm input-sm input-vh" onblur="priceUpdate(event, '${item._id}')" onchange="priceUpdate(event, '${item._id}')" />
+                </div>
+                <a href="cart.html" class="col-md-2 mb-4 text-sm-end text-md-center" onclick="removeItem('${item._id}')">supprimer</a>`; 
 }
