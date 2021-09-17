@@ -3,3 +3,28 @@
 .input-vh {
     width: 9vh;
 }
+
+
+.cart-header{
+    &__number {
+        border-radius: 50px;
+        background: #000;
+        color: #F6F2ED;
+        font-size: 0.6rem;
+        padding: 0.15rem 0.15rem;
+        position: relative; 
+        top: 1rem;
+        right: 7.1rem;
+        width: 19px;
+        height: 19px;
+        @include media-breakpoint-down(md) {
+          right: 1.5rem;
+        }
+    }
+}
+
+.cart-subheading {
+    @include media-breakpoint-down(md) {
+        display: none;
+      }
+}

@@ -11186,7 +11186,7 @@ textarea.form-control-lg {
   fill: url(#gradient);
 }
 .first-nav .navbar-brand {
-  font-family: "belligerent_madnessregular";
+  font-family: "belligerent_madnessregular", "Calibri", Helvetica, sans-serif;
 }
 .first-nav .navbar-icon {
   color: #C07635;
@@ -11238,7 +11238,7 @@ footer .second-footer-area .nav-link:hover {
   text-decoration: underline;
 }
 footer .second-footer-area .footer-heading--brand {
-  font-family: "belligerent_madnessregular";
+  font-family: "belligerent_madnessregular", "Calibri", Helvetica, sans-serif;
 }
 
 .heading {
@@ -11286,6 +11286,30 @@ footer .second-footer-area .footer-heading--brand {
 
 .input-vh {
   width: 9vh;
+}
+
+.cart-header__number {
+  border-radius: 50px;
+  background: #000;
+  color: #F6F2ED;
+  font-size: 0.6rem;
+  padding: 0.15rem 0.15rem;
+  position: relative;
+  top: 1rem;
+  right: 7.1rem;
+  width: 19px;
+  height: 19px;
+}
+@media (max-width: 767.98px) {
+  .cart-header__number {
+    right: 1.5rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .cart-subheading {
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
