@@ -11186,7 +11186,7 @@ textarea.form-control-lg {
   fill: url(#gradient);
 }
 .first-nav .navbar-brand {
-  font-family: "belligerent_madnessregular";
+  font-family: "belligerent_madnessregular", "Calibri", Helvetica, sans-serif;
 }
 .first-nav .navbar-icon {
   color: #C07635;
@@ -11238,7 +11238,7 @@ footer .second-footer-area .nav-link:hover {
   text-decoration: underline;
 }
 footer .second-footer-area .footer-heading--brand {
-  font-family: "belligerent_madnessregular";
+  font-family: "belligerent_madnessregular", "Calibri", Helvetica, sans-serif;
 }
 
 .heading {
