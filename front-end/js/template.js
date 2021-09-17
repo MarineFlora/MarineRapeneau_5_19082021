@@ -1,8 +1,25 @@
 // Templates utilisés pour les élements
 
-//----------------------------------- PAGE CART.js -----------------------------------//
+//----------------------------------- PAGE loadCameras.js -----------------------------------//
+// permet l'affichage des élements avec l'objet camera
+// appelée dans fonction loadCameras()
+function buildCameras(camera) {
+    return document.getElementById("cards").innerHTML += `<div class="col-12 col-md-6 col-lg-4 py-3">
+                                                    <div class="card"> 
+                                                        <img class="card-img-top" src="${camera.imageUrl}" alt="camera vintage" />
+                                                        <div class="card-body text-center">
+                                                            <h2 class="card-title">${camera.name}</h2>
+                                                            <p class="card-text price fw-bold">${camera.price} €</p>
+                                                            <a href="product.html?id=${camera.id}" class="btn btn-primary">Voir produit</a>
+                                                        </div>
+                                                    </div>
+                                                  </div>`; 
+}
 
+
+//----------------------------------- PAGE cart.js -----------------------------------//
 // retour des informations, prix et quantité des cameras ajoutées au panier
+// appelée dans fonction loadCart()
 function buildCartElements(item) {
     return `<div class="col-sm-3 mb-2">
                     <img id="product-img" class="camera-mini" src="${item.imageUrl}" alt="camera vintage ${item.name} " />
@@ -18,9 +35,10 @@ function buildCartElements(item) {
 }
 
 
-//----------------------------------- PAGE PRODUCT.js -----------------------------------//
+//----------------------------------- PAGE product.js -----------------------------------//
 
 // fonction pour afficher le produit choisi
+// appelée dans fonction loadProduct()
 function displayProduct(camera) {
     if (camera) {
         document.getElementById("product-img").innerHTML += `<img class="card-img-top card-img-cam" src="${camera.imageUrl}" alt="camera vintage ${camera.name}" />`; 
@@ -31,6 +49,7 @@ function displayProduct(camera) {
 }
 
 // fonction boucle qui parcourt les lentilles + affiche l'option dans element "select"
+// appelée dans fonction loadProduct()
 function addLenses(camera) {
     if (camera) {
         for(let i = 0; i < camera.lenses.length; i++) {
@@ -40,6 +59,7 @@ function addLenses(camera) {
 }
 
 // message pop-up pour confirmer ajout panier + liens
+// appelée dans fonction addToCart()
 function buildPopUpMessage(selectedCamera) {
     return document.getElementById("pop-up").innerHTML +=  `<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-centered" role="document">

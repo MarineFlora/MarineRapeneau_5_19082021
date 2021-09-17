@@ -7,6 +7,7 @@ let params = new URL(window.location).searchParams;
 const id = params.get("id");
 
 // fonction pour recuperer produit et l'afficher
+// onload sur <body> product.html
 function loadProduct() {
     fetch("http://localhost:3000/api/cameras/"+ id)
     // transforme données reçues en format json
@@ -25,6 +26,7 @@ function loadProduct() {
 //---------------------------AJOUT DE LA CAMERA AU PANIER---------------------------// 
 
 // ajout des produits au panier
+// onclick sur <button> "ajouter au panier" product.html
 function addToCart(event) {
     event.preventDefault();
     
@@ -68,16 +70,11 @@ function addToCart(event) {
                 cart.push(selectedCamera);
             }
         } 
-
         // ajoute l'élement dans le storage
         localStorage.setItem("cart", JSON.stringify(cart)); 
-
         // Affichage message pop-up
         buildPopUpMessage(selectedCamera);
-            
-    }
-
-    
+    } 
 }
 
 

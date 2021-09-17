@@ -1,7 +1,8 @@
 // récupération du panier
 let cartRestored = JSON.parse(localStorage.getItem("cart"));
 
-//----------------------------------- afficher le contenu de la page panier -----------------------------------//
+//----------------------------------- afficher le contenu du panier -----------------------------------//
+// onload sur <body> cart.html
 function loadCart() { 
         if (cartRestored && cartRestored.length > 0) {
             // fait apparaitre les elements html cachés pour le panier plein : form, lien retour, titre
@@ -37,9 +38,8 @@ function loadCart() {
 }
 
 
-//----------------------------------- recalcul du prix si quantité modifiée-----------------------------------//
-//----------------------------------- onblur + onchange sur input number de cart-products
-   
+// recalcul du prix si quantité modifiée
+// onblur + onchange sur input number de cart-products
 function priceUpdate(event, itemId) {
     event.preventDefault();
     let input = document.getElementById(itemId);
@@ -70,9 +70,8 @@ function priceUpdate(event, itemId) {
   }
 
 
-//----------------------------------- supprimer un produit-----------------------------------//
-//----------------------------------- onclick sur lien "supprimer" de cart-products
-
+// supprimer un produit
+// onclick sur lien "supprimer" de cart-products
 function removeItem(itemId) {
     // retourne un nouveau tableau contenant les élements du tableau d'origine qui n'ont pas le même Id que celui du click sur suppr
     const newCart = cartRestored.filter(product => product._id !== itemId);
@@ -85,10 +84,9 @@ function removeItem(itemId) {
 
 
 //----------------------------------- FORMULAIRE -----------------------------------//
-// Validation des champs et envoi
+// Validation des champs et envoi order si valid
 // fonction base provenant de bootstrap, customisée
 // dernier "();" = exécute immédiatement la fonction
-
 (function formValidation() {
      // utilise Javascript en mode strict = semantique légèrement différente du "normal" (élimine certaines erreurs)
     'use strict'
@@ -112,11 +110,10 @@ function removeItem(itemId) {
 
 
 //----------------------------------- Envoi panier + formulaire -----------------------------------//
-//----------------------------------- appellée dans fonction formValidation()
 
+// envoi données, appelée dans fonction formValidation()
 function submitOrder(event) {
     event.preventDefault();
-
     // récupération des valeurs des input 
     const formData = new FormData(event.target);
     const lastName = formData.get('lastName');
@@ -126,7 +123,6 @@ function submitOrder(event) {
     const city = formData.get('city');
     const zipCode = formData.get('zipCode');
     const email = formData.get('email');
-
     // envoi panier et contact
     if (cartRestored && cartRestored.length > 0) {
         // créer une instance de la classe Contact
@@ -141,13 +137,10 @@ function submitOrder(event) {
         const order = new Order(contact, productId);
         // envoi des données au back et recup orderId
         sendOrderData(order);
-
-    } else {
-        alert("Veuillez choisir un produit avant de valider votre commande");
-      }
+    } 
 }
 
-// requête POST pour envoi données
+// requête POST pour envoi données, appelée dans fonction submitOrder()
 function sendOrderData(order){
     fetch("http://localhost:3000/api/cameras/order", {
         method: "POST",
@@ -157,7 +150,6 @@ function sendOrderData(order){
         },
         body: JSON.stringify(order),
     })
-   
     .then((response) => response.json())
     .then((response) => {
         // recuperation du numero de commande
