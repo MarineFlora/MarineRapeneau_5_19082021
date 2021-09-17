@@ -7,7 +7,7 @@ function loadCart() {
         if (cartRestored && cartRestored.length > 0) {
             // fait apparaitre les elements html cachés pour le panier plein : form, lien retour, titre
             const cartFullDisplay = document.querySelector(".cart-full-display");     
-            cartFullDisplay.classList.remove("d-none");                                                
+            cartFullDisplay.classList.remove("d-none");                                               
             
             // initialisation variables
             let cartElements = "";
@@ -17,20 +17,27 @@ function loadCart() {
             cartRestored.forEach(item => {
                 totalPrice += item.price;
                 totalQuantity += Number(item.quantity);
+                cartElements += buildCartElements(item);
                 localStorage.setItem("totalQuantity", JSON.stringify(totalQuantity));
                 localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
-                cartElements += buildCartElements(item);
+                // mise à jour panier du header
+                updateHeaderCart();
             });
+           
+            
             // affichage HTML des éléments
             if (cartElements) { 
                 document.getElementById("cart-products").innerHTML = cartElements;
                 document.getElementById("cart-title").innerHTML = `<h1>Mon panier (${totalQuantity} produits)</h1>`;                                 
                 document.getElementById("cart-total").innerHTML = ` <p class="col fw-bold text-center">TOTAL</p>
                                                                     <p class="col fw-bold text-center">${totalPrice} €</p>`;
-                
+                                                                   
             } 
+          
 
         } else {
+            localStorage.clear("cart");
+            updateHeaderCart();
             // fait apparaitre les elements html de la page panier vide
             const emptyCartDisplay = document.getElementById("empty-cart");
             emptyCartDisplay.classList.remove("d-none");

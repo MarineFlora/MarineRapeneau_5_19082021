@@ -1,11 +1,13 @@
 // ajout dynamique du nombre de produits sur l'icone panier du header
 
-const cartIconNumber = document.querySelector(".cart-header__number");
-
 function updateHeaderCart() {
-    if (totalQuantity > 0) {
+    // récupération de la quantité
+    let totalQuantity = localStorage.getItem("totalQuantity");
+    const cartIconNumber = document.querySelector(".cart-header__number");
+    if (totalQuantity) {
         cartIconNumber.innerHTML = `<p>${totalQuantity}</p>`
     } else {
         cartIconNumber.classList.add('d-none');
     }
 }
+
