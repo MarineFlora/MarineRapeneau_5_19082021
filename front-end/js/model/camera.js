@@ -11,8 +11,3 @@ class Camera {
         this.lenses = jsonCamera.lenses;
     }
 }
-
-
-// formatage nombre
-//const nombreFormat = new Intl.NumberFormat("fr-FR").format(number));
-//number.toLocaleString("fr-FR")

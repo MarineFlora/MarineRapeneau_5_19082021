@@ -10,7 +10,7 @@ function buildCameras(camera) {
                                                         <div class="card-body text-center">
                                                             <h2 class="card-title">${camera.name}</h2>
                                                             <p class="card-text price fw-bold">${camera.price} €</p>
-                                                            <a href="product.html?id=${camera.id}" class="btn btn-primary">Voir produit</a>
+                                                            <a href="pages/product.html?id=${camera.id}" class="btn btn-primary">Voir produit</a>
                                                         </div>
                                                     </div>
                                                   </div>`; 
@@ -66,7 +66,7 @@ function buildPopUpMessage(selectedCamera) {
                                                                             </div>
                                                                         </div>
                                                                         <div class="modal-footer">
-                                                                            <a href="index.html" class="btn border-0">< Continuer mes achats</a>
+                                                                            <a href="../index.html" class="btn border-0">< Continuer mes achats</a>
                                                                             <a href="cart.html" class="btn btn-primary">Voir mon panier</a>
                                                                         </div>
                                                                     </div>
