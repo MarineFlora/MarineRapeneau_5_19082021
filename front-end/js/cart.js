@@ -8,7 +8,6 @@ function loadCart() {
             // fait apparaitre les elements html cachés pour le panier plein : form, lien retour, titre
             const cartFullDisplay = document.querySelector(".cart-full-display");     
             cartFullDisplay.classList.remove("d-none");                                               
-            
             // initialisation variables
             let cartElements = "";
             let totalPrice = 0;
@@ -24,18 +23,13 @@ function loadCart() {
                 // mise à jour panier du header
                 updateHeaderCart();
             });
-           
-            
             // affichage HTML des éléments
             if (cartElements) { 
                 document.getElementById("cart-products").innerHTML = cartElements;
                 document.getElementById("cart-title").innerHTML = `<h1>Mon panier (${totalQuantity} produits)</h1>`;                                 
                 document.getElementById("cart-total").innerHTML = ` <p class="col fw-bold text-center">TOTAL</p>
-                                                                    <p class="col fw-bold text-center">${totalPrice.toLocaleString("fr-FR", {minimumFractionDigits: 2})} €</p>`;
-                                                                   
+                                                                    <p class="col fw-bold text-center">${totalPrice.toLocaleString("fr-FR", {minimumFractionDigits: 2})} €</p>`;                                                     
             } 
-          
-
         } else {
             localStorage.clear("cart");
             updateHeaderCart();

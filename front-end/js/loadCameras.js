@@ -5,7 +5,7 @@ function loadCameras() {
     fetch("http://localhost:3000/api/cameras/")
     // transforme données reçues en format json
     .then(data => data.json()) 
-    // affiche les données dans la console
+    // affiche les caméras
     .then(jsonListCamera => { 
         // boucle qui parcours le tableau, pour chaque case du tableau elle créé une variable jsonCamera qui pourra être manipulée directement
         for(let jsonCamera of jsonListCamera) { 

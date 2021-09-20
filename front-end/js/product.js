@@ -51,7 +51,8 @@ function addToCart(event) {
          // on modifie le prix, la quantité
         selectedCamera.quantity = quantity;
         selectedCamera.price = (selectedCamera.price/100)*quantity;
-        // envoi des données au localStorage, si le panier est vide on l'initialise avec un array vide
+        
+        // on récupère les données du panier, si le panier est vide on l'initialise avec un array vide
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
         // si le panier est vide, on ajoute le 1er produit
@@ -70,7 +71,7 @@ function addToCart(event) {
                 cart.push(selectedCamera);
             }
         } 
-        // ajoute l'élement dans le storage
+        // ajoute l'élement dans le localStorage
         localStorage.setItem("cart", JSON.stringify(cart)); 
         // Affichage message pop-up
         buildPopUpMessage(selectedCamera);
