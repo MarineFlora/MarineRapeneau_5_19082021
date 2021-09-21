@@ -8,8 +8,8 @@
 .cart-header{
     &__number {
         border-radius: 50px;
-        background: #000;
-        color: #F6F2ED;
+        background: $black;
+        color: $light;
         font-size: 0.6rem;
         padding: 0.15rem 0.15rem;
         position: relative; 
