@@ -89,5 +89,5 @@ function buildCartElements(item) {
                 <div class="col-md-2 mb-2 d-flex justify-content-center justify-content-md-center justify-content-sm-end align-items-center ">
                     <input type="number" min="1" max="100" value="${item.quantity}" id="${item._id}" class="form-control form-select-sm input-sm input-vh" onblur="priceUpdate(event, '${item._id}')" onchange="priceUpdate(event, '${item._id}')" />
                 </div>
-                <a href="cart.html" class="col-md-2 mb-4 text-sm-end text-md-center" onclick="removeItem('${item._id}')">supprimer</a>`; 
+                <a href="cart.html" class="col-md-2 mb-4 text-sm-end text-md-center" onclick="removeItem(event, '${item._id}')">supprimer</a>`; 
 }

@@ -74,14 +74,19 @@ function priceUpdate(event, itemId) {
 
 // supprimer un produit
 // onclick sur lien "supprimer" de cart-products
-function removeItem(itemId) {
-    // retourne un nouveau tableau contenant les élements du tableau d'origine qui n'ont pas le même Id que celui du click sur suppr
-    const newCart = cartRestored.filter(product => product._id !== itemId);
-    if (newCart) {
-        // mise à jour du panier
-        localStorage.setItem("cart", JSON.stringify(newCart)); 
+function removeItem(event, itemId) {
+    event.preventDefault();
+    resultat = confirm("Voulez-vous supprimer le produit?");
+    if (resultat) {
+        // retourne un nouveau tableau contenant les élements du tableau d'origine qui n'ont pas le même Id que celui du click sur suppr
+        const newCart = cartRestored.filter(product => product._id !== itemId);
+        if (newCart) {
+            // mise à jour du panier
+            localStorage.setItem("cart", JSON.stringify(newCart)); 
+        }
+        location.reload();
     }
-    loadCart();
+   
 } 
 
 
