@@ -10,7 +10,7 @@ function buildCameras(camera) {
                                                         <div class="card-body text-center">
                                                             <h2 class="card-title">${camera.name}</h2>
                                                             <p class="card-text price fw-bold">${camera.price} €</p>
-                                                            <a href="pages/product.html?id=${camera.id}" class="btn btn-primary">Voir produit</a>
+                                                            <a href="pages/product.html?id=${camera.id}" class="btn btn-primary stretched-link">Voir produit</a>
                                                         </div>
                                                     </div>
                                                   </div>`; 
