@@ -7,16 +7,18 @@ But : Créer le front-end du MVP, version minimale de l’application web de e-c
 L'entreprise Orinoco crée des applications thématiques ne vendant qu’un seul groupe de produits (Oribook, Oritextil).
 Produit choisi pour le projet : caméras vintage, nom de l'application web : Oriphoto.
 
-Informations supplémentaires sur le projet : https://openclassrooms.com/fr/paths/185/projects/675/assignment
-
 4 pages :
 - liste des articles
-- page produit selectionné
+- produit selectionné
 - panier
 - confirmation de commande
 
-Status : en cours de réalisation
-https://marineflora.github.io/MarineRapeneau_5_19082021/
+Status : projet terminé
+
+## Lancement du site
+1. cloner le dépôt
+2. Suivre les instructions du README du dossier "back-end" (run 'node server')
+3. Ouvrir le fichier index.html du dossier "front-end"
 
 ## Technologies & frameworks
 - HTML
