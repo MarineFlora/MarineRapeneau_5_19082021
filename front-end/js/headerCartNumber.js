@@ -2,7 +2,7 @@
 
 function updateHeaderCart() {
     // récupération de la quantité
-    let totalQuantity = localStorage.getItem("totalQuantity");
+    let totalQuantity =  JSON.parse(localStorage.getItem("totalQuantity"));
     const cartIconNumber = document.querySelector(".cart-header__number");
     if (totalQuantity) {
         cartIconNumber.innerHTML = `<p>${totalQuantity}</p>`
