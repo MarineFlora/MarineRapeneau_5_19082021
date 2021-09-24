@@ -2,12 +2,12 @@
 //----------------------------------- onload sur <body> confirmation.html
 function loadOrderInfo() {
     // récupération orderId
-    const orderIdRestored = localStorage.getItem("orderId");
+    const orderIdRestored =  JSON.parse(localStorage.getItem("orderId"));
     console.log(orderIdRestored);
     // récupération de la quantité
-    const totalQuantity = localStorage.getItem("totalQuantity");
+    const totalQuantity =  JSON.parse(localStorage.getItem("totalQuantity"));
     //récupération prix total
-    const totalPrice = Number(localStorage.getItem("totalPrice"));
+    const totalPrice =  JSON.parse(localStorage.getItem("totalPrice"));
     
     if (orderIdRestored) {
         document.getElementById("order-info").innerHTML = ` <p>Nombre d'articles commandés : <strong>${totalQuantity}</strong></p>

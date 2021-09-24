@@ -162,7 +162,7 @@ function sendOrderData(order){
         // recuperation du numero de commande
         let orderId = response.orderId;
         console.log(orderId);
-        localStorage.setItem("orderId", orderId);
+        localStorage.setItem("orderId", JSON.stringify(orderId));
         window.location = 'confirmation.html';
       })
     .catch(error => console.log(error)); 
