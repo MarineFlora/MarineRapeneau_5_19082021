@@ -29,6 +29,12 @@ function loadProduct() {
 // onclick sur <button> "ajouter au panier" product.html
 function addToCart(event) {
     event.preventDefault();
+
+    // suppression de l'ancien message d'erreur si présent
+    let errorElement = document.getElementById("product-select-error");
+    if (errorElement) {
+        errorElement.remove();
+    }
     
     // on récupère les valeurs de l'objectif choisi
     let selectedLens = document.getElementById("select-lens").value;
@@ -38,14 +44,11 @@ function addToCart(event) {
     let quantity = document.getElementById("select-quantity").value;
     console.log(quantity);
 
-    // on affiche un message d'erreur si options non selectionnées
-    if (selectedLens == "" && quantity =="") {
-        alert("Vous devez choisir une lentille et une quantité");
-    } else if (selectedLens == "") { 
-        alert("Vous devez choisir une lentille");
-    } else if (quantity == ""){
-        alert("Vous devez choisir une quantité");
+    // affichage message erreur si options non selectionnées
+    if (selectedLens == "" || quantity =="") {
+        return document.querySelector(".product-selections").innerHTML += `<div id="product-select-error" class="alert alert-danger" role="alert">Vous devez choisir une lentille et une quantité</div>`;
     } 
+    
     // sinon on ajoute au panier et on affiche le message pop-up de confirmation
     else {
          // on modifie le prix, la quantité
