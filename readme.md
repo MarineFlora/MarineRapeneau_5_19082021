@@ -20,10 +20,11 @@ Compétences développées :
 ➡ Interagir avec un web service avec JavaScript   
 ➡ Gérer des événements JavaScript   
 ➡ Valider des données issues de sources externes   
-➡ Créer un plan de test pour une application
-➡ Réaliser une maquette à l'aide de Figma
+➡ Créer un plan de test pour une application   
+➡ Réaliser une maquette à l'aide de Figma   
 
-Voir le site en live (le back-end met quelques secondes à se charger) : https://marineflora.github.io/oc_p5_orinoco/
+## Site Live
+(le back-end met quelques secondes à se charger) : https://marineflora.github.io/oc_p5_orinoco/
 
 ## Lancement du site en local
 1. clonez le dépôt
