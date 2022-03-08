@@ -16,11 +16,9 @@ Produit choisi pour le projet : caméras vintage, nom de l'application web : Ori
 Status : projet terminé
 
 ## Lancement du site
-1. clonez le dépôt
-2. Vous devez avoir Node et Npm installé en local sur votre machine
-3. Installez le back-end : `cd back-end` puis run `npm install`, lancez le serveur : `node server`
-4. Installez les dépendences du front-end : `cd front-end` puis run `npm install`
-5. Ouvrez le fichier index.html du dossier "front-end"
+1. cloner le dépôt
+2. Suivre les instructions du README du dossier "back-end" (run 'node server')
+3. Ouvrir le fichier index.html du dossier "front-end"
 
 ## Technologies & frameworks
 - HTML
