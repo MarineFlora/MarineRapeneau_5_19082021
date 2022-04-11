@@ -24,7 +24,7 @@ Compétences développées :
 ➡ Réaliser une maquette à l'aide de Figma   
 
 ## Site Live
-(le back-end met quelques secondes à se charger) : https://marineflora.github.io/oc_p5_orinoco/
+(le back-end met quelques secondes à se charger) : https://marineflora.github.io/oc_p5_orinoco_front/
 
 ## Lancement du site en local
 1. clonez le dépôt
